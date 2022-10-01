@@ -44,21 +44,12 @@ public class BathroomScreenManager : MonoBehaviour
 
     public IEnumerator closeAndOpenCurtain()
     {
+        if (isInAnimation)
+            yield break;
+        isInAnimation = true;
         yield return StartCoroutine(closeCurtain());
         yield return new WaitForSeconds(3);
         yield return StartCoroutine(openCurtain());
         isInAnimation = false;
-    }
-
-    
-
-    public void GoToTheBathroom()
-    {
-        if(isInAnimation){
-            return;
-        }
-        Debug.Log("GoToTheBathroom");
-        isInAnimation = true;
-        StartCoroutine(closeAndOpenCurtain());
     }
 }
