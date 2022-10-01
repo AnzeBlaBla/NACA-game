@@ -31,19 +31,14 @@ public class MovableObject : MonoBehaviour
 
     void Start()
     {
-        if (addRandomInitialVelocity)
-        {
-            rb.velocity = new Vector2(Random.Range(randomVelocityRange.x, randomVelocityRange.y), Random.Range(randomVelocityRange.x, randomVelocityRange.y));
-            rb.angularVelocity = Random.Range(randomRotationalVelocityRange.x, randomRotationalVelocityRange.y);
-        }
-
-
         inputs = new GameInputs();
 
         inputs.Interaction.Enable();
 
         inputs.Interaction.Tap.performed += ctx => StartHold(ctx);
         inputs.Interaction.Tap.canceled += ctx => StopHold(ctx);
+
+        ResetPosition();
 
     }
 
@@ -98,7 +93,17 @@ public class MovableObject : MonoBehaviour
     {
         transform.position = startingPosition;
         transform.rotation = Quaternion.identity;
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
+
+        if (addRandomInitialVelocity)
+        {
+            rb.velocity = new Vector2(Random.Range(randomVelocityRange.x, randomVelocityRange.y), Random.Range(randomVelocityRange.x, randomVelocityRange.y));
+            rb.angularVelocity = Random.Range(randomRotationalVelocityRange.x, randomRotationalVelocityRange.y);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+
+        }
     }
 }
