@@ -13,6 +13,7 @@ public class OutsideAirLockDoor : MonoBehaviour
 
     void Start(){
         this.openDoor();
+        ScreenManager.Instance.DisableButtons();
     }
 
     void openDoor(){
