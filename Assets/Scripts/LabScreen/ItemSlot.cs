@@ -20,7 +20,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
     StorageManager.Instance.SaveStats();
 
     GameObject seed = gameObject.transform.GetChild(0).gameObject;
-    seed.GetComponent<UnityEngine.UI.RawImage>().texture = isPlanting ? textures[0] : null;
+    seed.GetComponent<UnityEngine.UI.RawImage>().texture = isPlanting ? textures[0] : textures[textures.Length - 1];
 
     GameObject timeLeft = gameObject.transform.GetChild(2).gameObject;
     timeLeft.GetComponent<TextMeshProUGUI>().text = isPlanting ? Epoch.SecondsToDisplay(growTime) : "";
