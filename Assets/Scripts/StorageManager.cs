@@ -35,8 +35,8 @@ public class StorageManager : Singleton<StorageManager>
             new GardenSlot() { index = 2, saveTime = 0, growTime = 10 },
             new GardenSlot() { index = 3, saveTime = 0, growTime = 10 },
         },
-    foodAmount = 0,
-    filteredWater = 0f,
+    foodAmount = 5,
+    filteredWater = 5f,
     unfilteredWater = 0f
   };
 
