@@ -35,6 +35,15 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PointerPosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""df0e84e5-3474-4d15-9ad0-7d8ebc423285"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -55,8 +64,19 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""path"": ""<Touchscreen>/Press"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Touch"",
                     ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e385c14-aaf1-4dd3-bb70-fa4b1b0ff48f"",
+                    ""path"": ""<Pointer>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Touch"",
+                    ""action"": ""PointerPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -645,6 +665,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         // Interaction
         m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
         m_Interaction_Tap = m_Interaction.FindAction("Tap", throwIfNotFound: true);
+        m_Interaction_PointerPosition = m_Interaction.FindAction("PointerPosition", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -717,11 +738,13 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Interaction;
     private IInteractionActions m_InteractionActionsCallbackInterface;
     private readonly InputAction m_Interaction_Tap;
+    private readonly InputAction m_Interaction_PointerPosition;
     public struct InteractionActions
     {
         private @GameInputs m_Wrapper;
         public InteractionActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Tap => m_Wrapper.m_Interaction_Tap;
+        public InputAction @PointerPosition => m_Wrapper.m_Interaction_PointerPosition;
         public InputActionMap Get() { return m_Wrapper.m_Interaction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -734,6 +757,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Tap.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnTap;
                 @Tap.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnTap;
                 @Tap.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnTap;
+                @PointerPosition.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnPointerPosition;
+                @PointerPosition.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnPointerPosition;
+                @PointerPosition.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnPointerPosition;
             }
             m_Wrapper.m_InteractionActionsCallbackInterface = instance;
             if (instance != null)
@@ -741,6 +767,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Tap.started += instance.OnTap;
                 @Tap.performed += instance.OnTap;
                 @Tap.canceled += instance.OnTap;
+                @PointerPosition.started += instance.OnPointerPosition;
+                @PointerPosition.performed += instance.OnPointerPosition;
+                @PointerPosition.canceled += instance.OnPointerPosition;
             }
         }
     }
@@ -898,6 +927,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     public interface IInteractionActions
     {
         void OnTap(InputAction.CallbackContext context);
+        void OnPointerPosition(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

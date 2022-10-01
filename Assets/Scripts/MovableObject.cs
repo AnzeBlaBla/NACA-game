@@ -49,7 +49,7 @@ public class MovableObject : MonoBehaviour
 
     void StartHold(InputAction.CallbackContext ctx)
     {
-        Vector2 mousePos = MousePos();
+        Vector2 mousePos = PointerPos();
 
         // get object under mouse
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -83,15 +83,15 @@ public class MovableObject : MonoBehaviour
         {
             //rb.MovePosition(MousePos() - holdLocation);
 
-            Vector2 desiredPosition = MousePos() - holdLocation;
+            Vector2 desiredPosition = PointerPos() - holdLocation;
 
             rb.AddForce((desiredPosition - (Vector2)transform.position) * moveForceAmount, ForceMode2D.Force);
         }
     }
 
-    Vector2 MousePos()
+    Vector2 PointerPos()
     {
-        return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        return Camera.main.ScreenToWorldPoint(inputs.Interaction.PointerPosition.ReadValue<Vector2>());
     }
 
     public void ResetPosition()

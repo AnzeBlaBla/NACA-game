@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &171951113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -415,7 +415,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPosition: {fileID: 669912546}
-  pushForce: {x: 0, y: 0}
+  pushForce: {x: -2, y: -3}
+  tapButton: {fileID: 171951112}
 --- !u!114 &779535445
 MonoBehaviour:
   m_ObjectHideFlags: 0
