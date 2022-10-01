@@ -17,9 +17,6 @@ public class MovableObject : MonoBehaviour
     bool held = false;
     Vector2 holdLocation = Vector2.zero;
 
-    Vector2 oldMousePos = Vector2.zero;
-
-
     Rigidbody2D rb;
     GameInputs inputs;
 
@@ -84,7 +81,6 @@ public class MovableObject : MonoBehaviour
             Vector2 desiredPosition = MousePos() - holdLocation;
 
             rb.AddForce((desiredPosition - (Vector2)transform.position) * moveForceAmount, ForceMode2D.Force);
-            oldMousePos = MousePos();
         }
     }
 
