@@ -14,6 +14,7 @@ public class AstronautAnimationManager : MonoBehaviour
         {
             yield break;
         }
+        Debug.Log("Playing animation: " + animationName);
         isPlayingAnimation = true;
         astronautAnimation.Play(animationName);
         yield return StartCoroutine( WaitForAnimation( astronautAnimation ) );
@@ -26,5 +27,31 @@ public class AstronautAnimationManager : MonoBehaviour
         {
             yield return null;
         } while ( animation.isPlaying );
+    }
+
+    public void lockAstronaut()
+    {
+        GameObject astronaut = AstronautManager.Instance.gameObject;
+
+        astronaut.GetComponent<MovableObject>().enabled = false;
+        Rigidbody2D rb = astronaut.GetComponent<Rigidbody2D>();
+
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        rb.isKinematic = true;
+
+        astronaut.transform.rotation = Quaternion.identity;
+
+        astronaut.transform.position = new Vector3(0, 0, 0);
+    }
+
+    public void unlockAstronaut()
+    {
+        GameObject astronaut = AstronautManager.Instance.gameObject;
+
+        astronaut.GetComponent<MovableObject>().enabled = true;
+        Rigidbody2D rb = astronaut.GetComponent<Rigidbody2D>();
+        
+        rb.isKinematic = false;
     }
 }

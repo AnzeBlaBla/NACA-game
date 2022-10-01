@@ -20,7 +20,9 @@ public class AirLockDoor : MonoBehaviour
     IEnumerator openDoor(){
         isAnimating = true;
         animator.SetTrigger("TrOpenAirLock");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
+        AstronautManager.Instance.gameObject.GetComponent<AstronautAnimationManager>().lockAstronaut();
+        yield return StartCoroutine(AstronautManager.Instance.gameObject.GetComponent<AstronautAnimationManager>().PlayAnimation("minimizing"));
         onAnimationComplete();
         isAnimating = false;
     }
@@ -36,7 +38,6 @@ public class AirLockDoor : MonoBehaviour
     // on click function
     public void OnClick()
     {
-        Debug.Log("AirLockDoor clicked");
         if(isLocked)
         {
             if(!isAnimating)

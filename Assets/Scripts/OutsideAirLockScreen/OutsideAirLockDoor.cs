@@ -12,11 +12,14 @@ public class OutsideAirLockDoor : MonoBehaviour
     }
 
     void Start(){
-        this.openDoor();
         ScreenManager.Instance.DisableButtons();
+        StartCoroutine(this.openDoor());
     }
 
-    void openDoor(){
+    IEnumerator openDoor(){
         animator.SetTrigger("TrOpenAirLock");
+        yield return new WaitForSeconds(4);
+        yield return StartCoroutine(AstronautManager.Instance.gameObject.GetComponent<AstronautAnimationManager>().PlayAnimation("maximizing"));
+        AstronautManager.Instance.gameObject.GetComponent<AstronautAnimationManager>().unlockAstronaut();
     }
 }
