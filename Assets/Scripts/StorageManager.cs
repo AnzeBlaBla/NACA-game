@@ -43,29 +43,8 @@ public class StorageManager : Singleton<StorageManager>
   private void Start()
   {
     LoadStats();
-    StartCoroutine(UpdateGardenSlots());
   }
 
-  IEnumerator UpdateGardenSlots()
-  {
-    while (true)
-    {
-      for (int i = 0; i < data.gardenSlots.Count; i++)
-      {
-        GardenSlot slot = data.gardenSlots[i];
-
-        if (slot.saveTime != 0)
-        {
-          int timePassed = Epoch.SecondsElapsed(slot.saveTime);
-          int timeLeft = slot.growTime - timePassed;
-        }
-      }
-
-      SaveStats();
-
-      yield return new WaitForSeconds(1f);
-    }
-  }
 
   public void SaveStats()
   {
