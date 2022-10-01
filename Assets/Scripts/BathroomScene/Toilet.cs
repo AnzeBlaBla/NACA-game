@@ -48,8 +48,8 @@ public class Toilet : MonoBehaviour
 
         astronaut.transform.position = attachPosition.position + new Vector3(0, 0.5f, 0);
     }
-
-    void DetachPlayer()
+    
+    void DetachPlayer(bool applyForce = true)
     {
         playerAttached = false;
 
@@ -58,7 +58,10 @@ public class Toilet : MonoBehaviour
         
         rb.isKinematic = false;
 
-        rb.AddForce(pushForce, ForceMode2D.Impulse);
+        if (applyForce)
+        {
+            rb.AddForce(pushForce, ForceMode2D.Impulse);
+        }
 
         astronaut = null;
     }
@@ -69,6 +72,16 @@ public class Toilet : MonoBehaviour
         if (playerAttached)
         {
             DetachPlayer();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        clickableObject.onClick -= OnClick;
+
+        if (playerAttached)
+        {
+            DetachPlayer(false);
         }
     }
 }

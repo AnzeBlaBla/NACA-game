@@ -57,16 +57,19 @@ public class FitnessDevice : MonoBehaviour
         tapButton.SetActive(true);
     }
 
-    void DetachPlayer()
+    void DetachPlayer(bool applyForce = true)
     {
         playerAttached = false;
-
+        
         astronaut.GetComponent<MovableObject>().enabled = true;
         Rigidbody2D rb = astronaut.GetComponent<Rigidbody2D>();
         
         rb.isKinematic = false;
 
-        rb.AddForce(pushForce, ForceMode2D.Impulse);
+        if (applyForce)
+        {
+            rb.AddForce(pushForce, ForceMode2D.Impulse);
+        }
 
         astronaut = null;
 
@@ -84,5 +87,15 @@ public class FitnessDevice : MonoBehaviour
     public void OnActionTap()
     {
         Debug.Log("Action Tap");
+    }
+
+    private void OnDestroy()
+    {
+        clickableObject.onClick -= OnClick;
+
+        if (playerAttached)
+        {
+            DetachPlayer(false);
+        }
     }
 }

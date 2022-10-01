@@ -1046,7 +1046,7 @@ MonoBehaviour:
   gameOverScene: GameOverScene
   lossIntervalOnlineMinutes: 0.2
   lossIntervalOfflineMinutes: 30
-  waterLossPerInterval: 1
+  waterLossPerInterval: 2
   foodLossPerInterval: 1
   fitnessLossPerInterval: 1
 --- !u!114 &768085887

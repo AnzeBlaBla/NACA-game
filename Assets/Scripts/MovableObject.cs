@@ -96,7 +96,6 @@ public class MovableObject : MonoBehaviour
 
     public void ResetPosition()
     {
-        Debug.Log("Resetting position to " + startingPosition);
         transform.position = startingPosition;
         transform.rotation = Quaternion.identity;
         rb.velocity = Vector2.zero;
