@@ -52,6 +52,8 @@ public class ScreenManager : Singleton<ScreenManager>
     {
         SceneManager.LoadScene(screens[currentScreenIndex].sceneName, LoadSceneMode.Additive);
         background.color = screens[currentScreenIndex].backgroundColor;
+
+        AstronautManager.Instance.gameObject.GetComponent<MovableObject>().ResetPosition();
     }
 
     public void UnloadScreen(int index)

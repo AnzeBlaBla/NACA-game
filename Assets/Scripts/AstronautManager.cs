@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using System;
+using UnityEngine.SceneManagement;
 
 public class AstronautManager : Singleton<AstronautManager>
 {
     private static string playerPrefsKey = "astronaut_stats";
+
+    public string gameOverScene;
     
     public Action onUpdate;
 
@@ -33,28 +36,50 @@ public class AstronautManager : Singleton<AstronautManager>
     public float lossIntervalOfflineMinutes = 30f;
 
     [JsonIgnore]
-    public float waterLossPerInterval = 1f;
+    public float waterLossPerInterval = 2f;
     [JsonIgnore]
     public float foodLossPerInterval = 1f;
+    [JsonIgnore]
+    public float fitnessLossPerInterval = 1f;
 
 
     private void Start()
     {
         LoadStats();
 
+
+        onUpdate += CheckFail;
+        
+        onUpdate.Invoke();
+
         StartCoroutine(UpdateData());
     }
 
-    IEnumerator UpdateData()
+    void CheckFail()
+    {
+        if (data.food <= 0 || data.water <= 0)
+        {
+            // Load game over scene
+            SceneManager.LoadScene(gameOverScene);
+        }
+    }
+
+            IEnumerator UpdateData()
     {
         while (true)
         {
+            yield return new WaitForSeconds(lossIntervalOnlineMinutes * 60f);
+
             data.water -= waterLossPerInterval;
             data.food -= foodLossPerInterval;
+            data.fitness -= fitnessLossPerInterval;
+
+            data.water = Mathf.Clamp(data.water, 0f, 100f);
+            data.food = Mathf.Clamp(data.food, 0f, 100f);
+            data.fitness = Mathf.Clamp(data.fitness, 0f, 100f);
 
             SaveStats();
 
-            yield return new WaitForSeconds(lossIntervalOnlineMinutes * 60f);
         }
     }
     
@@ -90,11 +115,14 @@ public class AstronautManager : Singleton<AstronautManager>
         // apply loss
         data.food -= intervals * foodLossPerInterval;
         data.water -= intervals * waterLossPerInterval;
+        data.fitness -= intervals * fitnessLossPerInterval;
 
         // clamp values
         data.food = Mathf.Clamp(data.food, 0f, 100f);
         data.water = Mathf.Clamp(data.water, 0f, 100f);
+        data.fitness = Mathf.Clamp(data.fitness, 0f, 100f);
 
         return data;
     }
+
 }

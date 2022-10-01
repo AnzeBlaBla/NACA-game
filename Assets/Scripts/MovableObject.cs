@@ -9,6 +9,7 @@ public class MovableObject : MonoBehaviour
 
     public bool addRandomInitialVelocity = false;
     public Vector2 randomVelocityRange = new Vector2(-1f, 1f);
+    public Vector2 randomRotationalVelocityRange = new Vector2(-1f, 1f);
 
     public float moveForceAmount = 1f;
 
@@ -19,10 +20,13 @@ public class MovableObject : MonoBehaviour
 
     Rigidbody2D rb;
     GameInputs inputs;
+    Vector3 startingPosition;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        startingPosition = transform.position;
     }
 
     void Start()
@@ -30,6 +34,7 @@ public class MovableObject : MonoBehaviour
         if (addRandomInitialVelocity)
         {
             rb.velocity = new Vector2(Random.Range(randomVelocityRange.x, randomVelocityRange.y), Random.Range(randomVelocityRange.x, randomVelocityRange.y));
+            rb.angularVelocity = Random.Range(randomRotationalVelocityRange.x, randomRotationalVelocityRange.y);
         }
 
 
@@ -49,10 +54,10 @@ public class MovableObject : MonoBehaviour
         // get object under mouse
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        // if hit this or child
+        if (hit.collider != null && (hit.collider.gameObject == gameObject || hit.collider.gameObject.transform.IsChildOf(transform)))
         {
             held = true;
-
             holdLocation = mousePos - (Vector2)transform.position;
         }
     }
@@ -87,5 +92,14 @@ public class MovableObject : MonoBehaviour
     Vector2 MousePos()
     {
         return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    }
+
+    public void ResetPosition()
+    {
+        Debug.Log("Resetting position to " + startingPosition);
+        transform.position = startingPosition;
+        transform.rotation = Quaternion.identity;
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
     }
 }
