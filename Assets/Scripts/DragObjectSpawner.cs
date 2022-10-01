@@ -11,6 +11,7 @@ public class DragObjectSpawner : MonoBehaviour
     GameObject held;
 
     public GameObject toSpawn;
+    public string useItem;
 
     void Start()
     {
@@ -32,7 +33,11 @@ public class DragObjectSpawner : MonoBehaviour
         // if hit this or child
         if (hit.collider != null && (hit.collider.gameObject == gameObject || hit.collider.gameObject.transform.IsChildOf(transform)))
         {
-            held = Instantiate(toSpawn, mousePos, Quaternion.identity);
+            if (StorageManager.Instance.GetData(useItem) > 0)
+            {
+                held = Instantiate(toSpawn, mousePos, Quaternion.identity);
+                StorageManager.Instance.ChangeData(useItem, -1f);
+            }
         }
     }
 
@@ -41,6 +46,8 @@ public class DragObjectSpawner : MonoBehaviour
         if (held != null)
         {
             Destroy(held);
+
+            StorageManager.Instance.ChangeData(useItem, 1f);
         }
     }
 

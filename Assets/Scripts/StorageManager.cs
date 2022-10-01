@@ -21,7 +21,7 @@ public class StorageManager : Singleton<StorageManager>
         public int growTime;
     }
 
-    public struct SaveData
+    public struct DataStruct
     {
         public List<GardenSlot> gardenSlots;
         public int foodAmount;
@@ -29,7 +29,7 @@ public class StorageManager : Singleton<StorageManager>
         public float unfilteredWater;
     }
 
-    public SaveData data = new SaveData()
+    public DataStruct data = new DataStruct()
     {
         gardenSlots = new List<GardenSlot>()
         {
@@ -45,7 +45,7 @@ public class StorageManager : Singleton<StorageManager>
 
     private void Start()
     {
-        LoadStats();
+        LoadData();
 
         StartCoroutine(FilterWater());
     }
@@ -63,40 +63,101 @@ public class StorageManager : Singleton<StorageManager>
                 data.unfilteredWater -= 1f;
                 data.filteredWater += 1f;
 
-                SaveStats();
+                SaveData();
             }
         }
     }
 
-
-    public void SaveStats()
+    
+    public void SaveData()
     {
+        Debug.Log(JsonConvert.SerializeObject(data));
         onUpdate?.Invoke();
         PlayerPrefs.SetString(playerPrefsKey, JsonConvert.SerializeObject(data));
     }
 
-    public void LoadStats()
+    public void LoadData()
     {
         if (PlayerPrefs.HasKey(playerPrefsKey))
         {
-            data = JsonConvert.DeserializeObject<SaveData>(PlayerPrefs.GetString(playerPrefsKey));
+            data = JsonConvert.DeserializeObject<DataStruct>(PlayerPrefs.GetString(playerPrefsKey));
         }
     }
-
-    SaveData ApplyTime(SaveData data)
+    
+    public float GetData(string key)
     {
-        for (int i = 0; i < data.gardenSlots.Count; i++)
+        switch (key)
         {
-            GardenSlot slot = data.gardenSlots[i];
+            case "foodAmount":
+                return data.foodAmount;
+            case "filteredWater":
+                return data.filteredWater;
+            case "unfilteredWater":
+                return data.unfilteredWater;
+            default:
+                return 0;
+        }
+    }
 
-            if (slot.saveTime != 0)
-            {
-                int timePassed = Epoch.Current() - slot.saveTime;
-                int timeLeft = slot.growTime - timePassed;
-            }
+    public void SetData(string key, float value)
+    {
+        switch (key)
+        {
+            case "foodAmount":
+                data.foodAmount = (int)value;
+                break;
+            case "filteredWater":
+                data.filteredWater = value;
+                break;
+            case "unfilteredWater":
+                data.unfilteredWater = value;
+                break;
         }
 
-        return data;
+        SaveData();
     }
+
+    public void SetData(string key, int value)
+    {
+        switch (key)
+        {
+            case "foodAmount":
+                data.foodAmount = value;
+                break;
+        }
+
+        SaveData();
+    }
+
+    public void ChangeData(string key, float value)
+    {
+        switch (key)
+        {
+            case "foodAmount":
+                data.foodAmount += (int)value;
+                break;
+            case "filteredWater":
+                data.filteredWater += value;
+                break;
+            case "unfilteredWater":
+                data.unfilteredWater += value;
+                break;
+        }
+
+        SaveData();
+    }
+
+    public void ChangeData(string key, int value)
+    {
+        switch (key)
+        {
+            case "foodAmount":
+                data.foodAmount += value;
+                break;
+        }
+
+        SaveData();
+    }
+
 }
 

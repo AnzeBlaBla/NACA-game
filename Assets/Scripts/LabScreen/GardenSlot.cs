@@ -17,7 +17,7 @@ public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 
   private void SaveGardenSlots(bool isPlanting)
   {
-    StorageManager.Instance.SaveStats();
+    StorageManager.Instance.SaveData();
 
     GameObject seed = gameObject.transform.GetChild(0).gameObject;
     seed.GetComponent<UnityEngine.UI.RawImage>().texture = isPlanting ? textures[0] : textures[textures.Length - 1];
