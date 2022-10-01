@@ -52,11 +52,6 @@ public class StorageManager : Singleton<StorageManager>
         {
           int timePassed = Epoch.SecondsElapsed(slot.saveTime);
           int timeLeft = slot.growTime - timePassed;
-
-          if (timeLeft <= 0)
-          {
-            data.gardenSlots[i] = new GardenSlot();
-          }
         }
       }
 
@@ -90,11 +85,6 @@ public class StorageManager : Singleton<StorageManager>
       {
         int timePassed = Epoch.Current() - slot.saveTime;
         int timeLeft = slot.growTime - timePassed;
-
-        if (timeLeft <= 0)
-        {
-          data.gardenSlots[i] = new GardenSlot();
-        }
       }
     }
 

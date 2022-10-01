@@ -9,41 +9,72 @@ public class GreenHouseUIUpdate : MonoBehaviour
 
   private void Start()
   {
+
+    // update UI
+    for (int i = 0; i < StorageManager.Instance.data.gardenSlots.Count; i++)
+    {
+      StorageManager.GardenSlot slot = StorageManager.Instance.data.gardenSlots[i];
+      GameObject slotUI = gardenSlotsUI.transform.GetChild(i).gameObject;
+      GameObject seed = slotUI.transform.GetChild(0).gameObject;
+
+      if (slot.saveTime != 0)
+      {
+        int timePassed = Epoch.Current() - slot.saveTime;
+        int timeLeft = slot.growTime - timePassed;
+
+        int textureIndex = CalculateTextureIndex(timePassed, slot.growTime);
+
+        if (timeLeft <= 0)
+        {
+          seed.GetComponent<UnityEngine.UI.RawImage>().texture = textures[textureIndex];
+        }
+      }
+    }
+
     StorageManager.Instance.onUpdate += UpdateUI;
   }
 
   private void UpdateUI()
   {
-    for (int i = 0; i < StorageManager.Instance.data.gardenSlots.Count; i++)
+    if (gardenSlotsUI != null)
     {
-      StorageManager.GardenSlot slot = StorageManager.Instance.data.gardenSlots[i];
 
-      if (slot.saveTime != 0)
+      for (int i = 0; i < StorageManager.Instance.data.gardenSlots.Count; i++)
       {
-        int timePassed = Epoch.SecondsElapsed(slot.saveTime);
-        int timeLeft = slot.growTime - timePassed;
+        StorageManager.GardenSlot slot = StorageManager.Instance.data.gardenSlots[i];
 
-        if (timeLeft <= 0)
+        if (slot.saveTime != 0)
         {
-          StorageManager.Instance.data.gardenSlots[i] = new StorageManager.GardenSlot();
-        }
-        else
-        {
-          GameObject seed = gardenSlotsUI.transform.GetChild(i).GetChild(0).gameObject;
+          int timePassed = Epoch.SecondsElapsed(slot.saveTime);
+          int timeLeft = slot.growTime - timePassed;
 
+          if (timeLeft >= 0)
+          {
+            GameObject seed = gardenSlotsUI.transform.GetChild(i).GetChild(0).gameObject;
 
-
-          int textureIndex = (int)Mathf.Floor((float)timePassed / (float)slot.growTime * (float)textures.Length);
-
-          Debug.Log("textureIndex: " + textureIndex);
-          Debug.Log("timePassed: " + timePassed);
-          Debug.Log("timeLeft " + timeLeft);
-          Debug.Log("slot.growTime " + slot.growTime);
-          Debug.Log("slot.saveTime " + slot.saveTime);
-
-          seed.GetComponent<UnityEngine.UI.RawImage>().texture = textures[textureIndex];
+            int textureIndex = CalculateTextureIndex(timePassed, slot.growTime);
+            seed.GetComponent<UnityEngine.UI.RawImage>().texture = textures[textureIndex];
+          }
         }
       }
+    }
+  }
+
+  private int CalculateTextureIndex(int timePassed, int growTime)
+  {
+    float percent = (float)timePassed / (float)growTime;
+
+    if (percent >= 1f)
+    {
+      return 2;
+    }
+    else if (percent >= 0.5f)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
     }
   }
 }
