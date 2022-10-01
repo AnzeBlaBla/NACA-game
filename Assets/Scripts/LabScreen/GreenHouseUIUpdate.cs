@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GreenHouseUIUpdate : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class GreenHouseUIUpdate : MonoBehaviour
         {
           seed.GetComponent<UnityEngine.UI.RawImage>().texture = textures[textureIndex];
         }
+
+        GameObject timeLeftUI = slotUI.transform.GetChild(2).gameObject;
+        timeLeftUI.GetComponent<TextMeshProUGUI>().text = timeLeft <= 0 ? "Ready" : Epoch.SecondsToDisplay(timeLeft);
       }
     }
 
@@ -55,6 +59,9 @@ public class GreenHouseUIUpdate : MonoBehaviour
             int textureIndex = CalculateTextureIndex(timePassed, slot.growTime);
             seed.GetComponent<UnityEngine.UI.RawImage>().texture = textures[textureIndex];
           }
+
+          GameObject timeLeftUI = gardenSlotsUI.transform.GetChild(i).GetChild(2).gameObject;
+          timeLeftUI.GetComponent<TextMeshProUGUI>().text = timeLeft <= 0 ? "Ready" : Epoch.SecondsToDisplay(timeLeft);
         }
       }
     }
