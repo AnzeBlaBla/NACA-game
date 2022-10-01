@@ -86,7 +86,7 @@ public class FitnessDevice : MonoBehaviour
 
     public void OnActionTap()
     {
-        Debug.Log("Action Tap");
+        AstronautManager.Instance.ChangeStat("fitness", 0.5f);
     }
 
     private void OnDestroy()
