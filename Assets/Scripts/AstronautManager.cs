@@ -74,9 +74,7 @@ public class AstronautManager : Singleton<AstronautManager>
             data.food -= foodLossPerInterval;
             data.fitness -= fitnessLossPerInterval;
 
-            data.water = Mathf.Clamp(data.water, 0f, 100f);
-            data.food = Mathf.Clamp(data.food, 0f, 100f);
-            data.fitness = Mathf.Clamp(data.fitness, 0f, 100f);
+            ClampStats();
 
             SaveStats();
 
@@ -117,12 +115,35 @@ public class AstronautManager : Singleton<AstronautManager>
         data.water -= intervals * waterLossPerInterval;
         data.fitness -= intervals * fitnessLossPerInterval;
 
-        // clamp values
-        data.food = Mathf.Clamp(data.food, 0f, 100f);
-        data.water = Mathf.Clamp(data.water, 0f, 100f);
-        data.fitness = Mathf.Clamp(data.fitness, 0f, 100f);
+        ClampStats();
 
         return data;
     }
 
+    public void ChangeStat(string name, float change)
+    {
+        switch (name)
+        {
+            case "food":
+                data.food += change;
+                break;
+            case "water":
+                data.water += change;
+                break;
+            case "fitness":
+                data.fitness += change;
+                break;
+        }
+
+        ClampStats();
+
+        SaveStats();
+    }
+
+    void ClampStats()
+    {
+        data.food = Mathf.Clamp(data.food, 0f, 100f);
+        data.water = Mathf.Clamp(data.water, 0f, 100f);
+        data.fitness = Mathf.Clamp(data.fitness, 0f, 100f);
+    }
 }
