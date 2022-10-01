@@ -240,6 +240,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2535dea2af5d91a40bebde5c08b6c460, type: 2}
   - {fileID: 11400000, guid: 44eb338737319d74db838e80c08bec8c, type: 2}
   - {fileID: 11400000, guid: 80e37f5b1c969b54db99a7291e126f79, type: 2}
+  - {fileID: 11400000, guid: a55cd236daa0eb240a6ab8650b024900, type: 2}
   currentScreenIndex: 0
   backgroundGO: {fileID: 74588414}
 --- !u!4 &277754253
@@ -841,9 +842,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc923063052cfb48912790b32eb53c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hunger: 100
-  energy: 100
-  happiness: 100
+  food: 100
+  water: 100
+  fitness: 100
 --- !u!1 &897637491
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScreen.unity
     guid: 36754a5748b3e314aa113875167adced
   - enabled: 1
-    path: Assets/Scenes/StorageScreen.unity
+    path: Assets/Scenes/CantineScreen.unity
     guid: f6909d13c7d7d484ba0674c388d8a5a3
   m_configObjects: {}
