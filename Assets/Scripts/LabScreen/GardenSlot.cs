@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class ItemSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
+public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 {
   [SerializeField] private Texture[] textures;
   [SerializeField] private int growTime = 30;
