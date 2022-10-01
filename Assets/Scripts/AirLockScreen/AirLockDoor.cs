@@ -8,6 +8,7 @@ public class AirLockDoor : MonoBehaviour
     private Animator animator;
 
     private bool isLocked = true;
+    private bool isAnimating = false;
     void Awake()
     {
         clickableObject = GetComponent<ClickableObject>();
@@ -17,9 +18,11 @@ public class AirLockDoor : MonoBehaviour
     }
 
     IEnumerator openDoor(){
+        isAnimating = true;
         animator.SetTrigger("TrOpenAirLock");
         yield return new WaitForSeconds(3);
         onAnimationComplete();
+        isAnimating = false;
     }
 
 
@@ -36,12 +39,10 @@ public class AirLockDoor : MonoBehaviour
         Debug.Log("AirLockDoor clicked");
         if(isLocked)
         {
-            StartCoroutine(this.openDoor());
-        }
-        else
-        {
-            // play sound
-            // open door
+            if(!isAnimating)
+            {
+                StartCoroutine(openDoor());
+            }
         }
     }
 }
