@@ -374,7 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0.6064507, b: 0.7075472, a: 0.7529412}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -430,7 +430,7 @@ Transform:
   m_GameObject: {fileID: 440815116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.187, z: 0}
-  m_LocalScale: {x: 0.15270528, y: 0.15270528, z: 0.15270528}
+  m_LocalScale: {x: 0.075, y: 0.075, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 768085885}
@@ -477,7 +477,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5aca814b5027e8144ab4a0fbd416173d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82a29ad1290a6c047ba2711a87ea9845, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -501,8 +501,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 5.2499995, y: 7.3299994}
+  m_Offset: {x: -0.50405025, y: -0.09164492}
+  m_Size: {x: 9.374057, y: 19.610525}
   m_Direction: 0
 --- !u!1001 &500146850
 PrefabInstance:
@@ -768,6 +768,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bb4d27408960b76498161ef8274ac1c5, type: 3}
+    - target: {fileID: 5797479230793707765, guid: 59b22a0a8d2880e4c958341654d5d529, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b22a0a8d2880e4c958341654d5d529, type: 3}
@@ -823,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.3137255}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1322,6 +1326,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 75fe1d019eab11f48ad2e557f435dee1, type: 3}
+    - target: {fileID: 5797479230793707765, guid: 59b22a0a8d2880e4c958341654d5d529, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b22a0a8d2880e4c958341654d5d529, type: 3}
@@ -2040,6 +2048,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 20ef1f1594e51e3499cb7eed8eaa1daf, type: 3}
+    - target: {fileID: 5797479230793707765, guid: 59b22a0a8d2880e4c958341654d5d529, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b22a0a8d2880e4c958341654d5d529, type: 3}
