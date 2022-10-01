@@ -6,23 +6,43 @@ public class BathroomScreenManager : MonoBehaviour
 {
     public GameObject curtain;
 
-    void Start()
+    IEnumerator closeCurtain()
     {
-        var _animation = curtain.GetComponent<Animation>();
+        Vector2 position = curtain.GetComponent<RectTransform>().anchoredPosition;
+ 
+        while (position.x < 0)
+        {
+            position.x += Screen.width / 20;
+            curtain.GetComponent<RectTransform>().anchoredPosition = position;
+            yield return new WaitForSeconds(0.1f);
+        }
+        position.x = 0;
+        curtain.GetComponent<RectTransform>().anchoredPosition = position;
+    }
 
-    var clip = new AnimationClip();
-    var curve = AnimationCurve.Linear(0, -1056, 20, 0);
-    clip.SetCurve("Curtain", typeof(Transform), "anchoredPosition.x", curve);
+    IEnumerator openCurtain()
+    {
+        Vector2 position = curtain.GetComponent<RectTransform>().anchoredPosition;
 
-    curve = AnimationCurve.Linear(0, 0, 20, 0);
-    clip.SetCurve("Curtain", typeof(Transform), "anchoredPosition.y", curve);
+        while (position.x > -Screen.width)
+        {
+            position.x -= Screen.width / 20;
+            curtain.GetComponent<RectTransform>().anchoredPosition = position;
+            yield return new WaitForSeconds(0.1f);
+        }
+        position.x = -Screen.width;
+        curtain.GetComponent<RectTransform>().anchoredPosition = position;
+    }
 
-    clip.name = "Curtain"; // set name
-    clip.legacy = true; // change to legacy
-    
-    _animation.clip = clip; // set default clip
-    _animation.AddClip(clip, clip.name); // add clip to animation component
+    IEnumerator closeAndOpenCurtain()
+    {
+        yield return StartCoroutine(closeCurtain());
+        yield return new WaitForSeconds(3);
+        yield return StartCoroutine(openCurtain());
+    }
 
-    _animation.Play("Curtain"); // play animation
+    public void GoToTheBathroom()
+    {
+        StartCoroutine(closeAndOpenCurtain());
     }
 }

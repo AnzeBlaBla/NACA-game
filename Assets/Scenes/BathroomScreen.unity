@@ -209,7 +209,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1975513841}
         m_TargetAssemblyTypeName: BathroomScreenManager, Assembly-CSharp
-        m_MethodName: runCloseOpenCurtain
+        m_MethodName: RunCloseCurtain
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
