@@ -21,6 +21,7 @@ public class ScreenManager : Singleton<ScreenManager>
 
         // Load the first screen
         LoadCurrentScreen();
+        this.UnloadScreenWithName("OutsideAirLockScreen");
     }
 
 
