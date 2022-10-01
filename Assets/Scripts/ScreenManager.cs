@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class ScreenManager : Singleton<ScreenManager>
 {
+    public GameObject nextButton;
+    public GameObject backButton;
+
     public List<ScreenItem> screens;
     public int currentScreenIndex = 0;
 
@@ -21,6 +24,7 @@ public class ScreenManager : Singleton<ScreenManager>
 
         // Load the first screen
         LoadCurrentScreen();
+        this.UnloadScreenWithName("OutsideAirLockScreen");
     }
 
 
@@ -64,11 +68,27 @@ public class ScreenManager : Singleton<ScreenManager>
 
     public void UnloadScreen(int index)
     {
+            this.UnloadScreenWithName(screens[index].sceneName);
+    }
+    public void UnloadScreenWithName(string name)
+    {
         try
         {
-            SceneManager.UnloadSceneAsync(screens[index].sceneName);
+            SceneManager.UnloadSceneAsync(name);
         }
         catch { }
 
+    }
+
+    public void EnableButtons()
+    {
+        nextButton.SetActive(true);
+        backButton.SetActive(true);
+    }
+
+    public void DisableButtons()
+    {
+        nextButton.SetActive(false);
+        backButton.SetActive(false);
     }
 }

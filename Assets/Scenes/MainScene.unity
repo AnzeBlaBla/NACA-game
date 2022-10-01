@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 440815117}
   - component: {fileID: 440815119}
   - component: {fileID: 440815120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Astronaut
   m_Icon: {fileID: 0}
@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 768085886}
   - component: {fileID: 768085887}
   - component: {fileID: 768085888}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Astronaut
   m_TagString: Astronaut
   m_Icon: {fileID: 0}
@@ -2206,9 +2206,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7032875378937317706, guid: bba136766424f1a4da0ab6f64534b8fb, type: 3}
+      propertyPath: backButton
+      value: 
+      objectReference: {fileID: 1413793771}
+    - target: {fileID: 7032875378937317706, guid: bba136766424f1a4da0ab6f64534b8fb, type: 3}
       propertyPath: background
       value: 
       objectReference: {fileID: 286530606}
+    - target: {fileID: 7032875378937317706, guid: bba136766424f1a4da0ab6f64534b8fb, type: 3}
+      propertyPath: nextButton
+      value: 
+      objectReference: {fileID: 669273880}
     - target: {fileID: 7032875378937317706, guid: bba136766424f1a4da0ab6f64534b8fb, type: 3}
       propertyPath: screens.Array.size
       value: 6

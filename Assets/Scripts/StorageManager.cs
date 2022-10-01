@@ -6,95 +6,97 @@ using Newtonsoft.Json;
 
 public class StorageManager : Singleton<StorageManager>
 {
-  private static string playerPrefsKey = "storage_items";
-
-  public Action onUpdate;
+    private static string playerPrefsKey = "storage_items";
 
 
-  public struct GardenSlot
-  {
-    public int index;
-    public int saveTime;
-    public int growTime;
-  }
+    public float filterInterval = 5f;
 
-  public struct SaveData
-  {
-    public List<GardenSlot> gardenSlots;
-    public int foodAmount;
-    public float filteredWater;
-    public float unfilteredWater;
-  }
+    public Action onUpdate;
 
-  public SaveData data = new SaveData()
-  {
-    gardenSlots = new List<GardenSlot>()
+
+    public struct GardenSlot
+    {
+        public int index;
+        public int saveTime;
+        public int growTime;
+    }
+
+    public struct SaveData
+    {
+        public List<GardenSlot> gardenSlots;
+        public int foodAmount;
+        public float filteredWater;
+        public float unfilteredWater;
+    }
+
+    public SaveData data = new SaveData()
+    {
+        gardenSlots = new List<GardenSlot>()
         {
             new GardenSlot() { index = 0, saveTime = 0, growTime = 10 },
             new GardenSlot() { index = 1, saveTime = 0, growTime = 10 },
             new GardenSlot() { index = 2, saveTime = 0, growTime = 10 },
             new GardenSlot() { index = 3, saveTime = 0, growTime = 10 },
         },
-    foodAmount = 5,
-    filteredWater = 5f,
-    unfilteredWater = 0f
-  };
+        foodAmount = 5,
+        filteredWater = 5f,
+        unfilteredWater = 0f
+    };
 
-  private void Start()
-  {
-    LoadStats();
-    StartCoroutine(UpdateGardenSlots());
-  }
-
-  IEnumerator UpdateGardenSlots()
-  {
-    while (true)
+    private void Start()
     {
-      for (int i = 0; i < data.gardenSlots.Count; i++)
-      {
-        GardenSlot slot = data.gardenSlots[i];
+        LoadStats();
 
-        if (slot.saveTime != 0)
+        StartCoroutine(FilterWater());
+    }
+
+    IEnumerator FilterWater()
+    {
+        while (true)
         {
-          int timePassed = Epoch.SecondsElapsed(slot.saveTime);
-          int timeLeft = slot.growTime - timePassed;
+            yield return new WaitForSeconds(filterInterval);
+
+            Debug.Log("Filtering water: " + data.unfilteredWater);
+
+            if (data.unfilteredWater > 0)
+            {
+                data.unfilteredWater -= 1f;
+                data.filteredWater += 1f;
+
+                SaveStats();
+            }
         }
-      }
-
-      SaveStats();
-
-      yield return new WaitForSeconds(1f);
     }
-  }
 
-  public void SaveStats()
-  {
-    onUpdate?.Invoke();
-    PlayerPrefs.SetString(playerPrefsKey, JsonConvert.SerializeObject(data));
-  }
 
-  public void LoadStats()
-  {
-    if (PlayerPrefs.HasKey(playerPrefsKey))
+    public void SaveStats()
     {
-      data = JsonConvert.DeserializeObject<SaveData>(PlayerPrefs.GetString(playerPrefsKey));
+        onUpdate?.Invoke();
+        PlayerPrefs.SetString(playerPrefsKey, JsonConvert.SerializeObject(data));
     }
-  }
 
-  SaveData ApplyTime(SaveData data)
-  {
-    for (int i = 0; i < data.gardenSlots.Count; i++)
+    public void LoadStats()
     {
-      GardenSlot slot = data.gardenSlots[i];
-
-      if (slot.saveTime != 0)
-      {
-        int timePassed = Epoch.Current() - slot.saveTime;
-        int timeLeft = slot.growTime - timePassed;
-      }
+        if (PlayerPrefs.HasKey(playerPrefsKey))
+        {
+            data = JsonConvert.DeserializeObject<SaveData>(PlayerPrefs.GetString(playerPrefsKey));
+        }
     }
 
-    return data;
-  }
+    SaveData ApplyTime(SaveData data)
+    {
+        for (int i = 0; i < data.gardenSlots.Count; i++)
+        {
+            GardenSlot slot = data.gardenSlots[i];
+
+            if (slot.saveTime != 0)
+            {
+                int timePassed = Epoch.Current() - slot.saveTime;
+                int timeLeft = slot.growTime - timePassed;
+            }
+        }
+
+        return data;
+    }
 }
 

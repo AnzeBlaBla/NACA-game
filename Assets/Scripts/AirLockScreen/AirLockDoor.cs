@@ -16,9 +16,18 @@ public class AirLockDoor : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void openDoor(){
+    IEnumerator openDoor(){
         animator.SetTrigger("TrOpenAirLock");
+        yield return new WaitForSeconds(3);
+        onAnimationComplete();
     }
+
+
+     void onAnimationComplete()
+     {
+         ScreenManager.Instance.LoadScreen("OutsideAirLockScreen", Color.black);
+         ScreenManager.Instance.UnloadScreen(ScreenManager.Instance.currentScreenIndex);
+     }
 
 
     // on click function
@@ -27,7 +36,7 @@ public class AirLockDoor : MonoBehaviour
         Debug.Log("AirLockDoor clicked");
         if(isLocked)
         {
-            this.openDoor();
+            StartCoroutine(this.openDoor());
         }
         else
         {

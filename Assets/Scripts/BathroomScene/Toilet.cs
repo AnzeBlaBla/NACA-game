@@ -26,7 +26,10 @@ public class Toilet : MonoBehaviour
 
         if (other.CompareTag("Astronaut"))
         {
-            StartCoroutine(RunAutoToilet());
+            if(AstronautManager.Instance.data.bladder > 10f)
+            {
+                StartCoroutine(RunAutoToilet());
+            }
         }
     }
 
@@ -34,6 +37,11 @@ public class Toilet : MonoBehaviour
     {
         AttachPlayer();
         yield return StartCoroutine(this.bathroomScreenManager.closeAndOpenCurtain());
+
+        StorageManager.Instance.data.unfilteredWater += AstronautManager.Instance.data.bladder;
+
+        AstronautManager.Instance.data.bladder = 0f;
+
         DetachPlayer();
     }
 
