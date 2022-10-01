@@ -21,6 +21,7 @@ public class StorageManager : Singleton<StorageManager>
   public struct SaveData
   {
     public List<GardenSlot> gardenSlots;
+    public int foodAmount;
   }
 
   public SaveData data = new SaveData()
@@ -31,7 +32,8 @@ public class StorageManager : Singleton<StorageManager>
             new GardenSlot() { index = 1, saveTime = 0, growTime = 10 },
             new GardenSlot() { index = 2, saveTime = 0, growTime = 10 },
             new GardenSlot() { index = 3, saveTime = 0, growTime = 10 },
-        }
+        },
+    foodAmount = 0
   };
 
   private void Start()
