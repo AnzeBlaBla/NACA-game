@@ -64,9 +64,13 @@ public class ScreenManager : Singleton<ScreenManager>
 
     public void UnloadScreen(int index)
     {
+            this.UnloadScreenWithName(screens[index].sceneName);
+    }
+    public void UnloadScreenWithName(string name)
+    {
         try
         {
-            SceneManager.UnloadSceneAsync(screens[index].sceneName);
+            SceneManager.UnloadSceneAsync(name);
         }
         catch { }
 
