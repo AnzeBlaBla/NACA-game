@@ -50,10 +50,16 @@ public class ScreenManager : Singleton<ScreenManager>
 
     public void LoadCurrentScreen()
     {
-        SceneManager.LoadScene(screens[currentScreenIndex].sceneName, LoadSceneMode.Additive);
-        background.color = screens[currentScreenIndex].backgroundColor;
+        LoadScreen(screens[currentScreenIndex].sceneName, screens[currentScreenIndex].backgroundColor);
+    }
+    
+    public void LoadScreen(string name, Color color)
+    {
+        SceneManager.LoadScene(name, LoadSceneMode.Additive);
+        background.color = color;
 
         AstronautManager.Instance.gameObject.GetComponent<MovableObject>().ResetPosition();
+
     }
 
     public void UnloadScreen(int index)
@@ -63,6 +69,6 @@ public class ScreenManager : Singleton<ScreenManager>
             SceneManager.UnloadSceneAsync(screens[index].sceneName);
         }
         catch { }
-        
+
     }
 }

@@ -1,28 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System;
+using UnityEngine.InputSystem;
 
-public class ClickableObject : MonoBehaviour
+public class DragObjectSpawner : MonoBehaviour
 {
     GameInputs inputs;
-    public Action onClick;
 
-    
+    GameObject held;
+
+    public GameObject toSpawn;
 
     void Start()
     {
 
         inputs = new GameInputs();
-
         inputs.Interaction.Enable();
-
-        inputs.Interaction.Tap.performed += ctx => CheckClick(ctx);
+        inputs.Interaction.Tap.performed += ctx => SpawnObject(ctx);
+        inputs.Interaction.Tap.canceled += ctx => StopHold(ctx);
 
     }
 
-    void CheckClick(InputAction.CallbackContext ctx)
+    void SpawnObject(InputAction.CallbackContext ctx)
     {
         Vector2 mousePos = PointerPos();
 
@@ -31,8 +31,24 @@ public class ClickableObject : MonoBehaviour
 
         // if hit this or child
         if (hit.collider != null && (hit.collider.gameObject == gameObject || hit.collider.gameObject.transform.IsChildOf(transform)))
-        { 
-            onClick?.Invoke();
+        {
+            held = Instantiate(toSpawn, mousePos, Quaternion.identity);
+        }
+    }
+
+    void StopHold(InputAction.CallbackContext ctx)
+    {
+        if (held != null)
+        {
+            Destroy(held);
+        }
+    }
+
+    private void Update()
+    {
+        if (held != null)
+        {
+            held.transform.position = PointerPos();
         }
     }
 

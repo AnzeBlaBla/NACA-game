@@ -18,6 +18,7 @@ public class AstronautManager : Singleton<AstronautManager>
         public float food;
         public float water;
         public float fitness;
+        public float bladder;
 
         public int saveTime;
     }
@@ -27,6 +28,7 @@ public class AstronautManager : Singleton<AstronautManager>
         food = 100f,
         water = 100f,
         fitness = 100f,
+        bladder = 0f,
         saveTime = Epoch.Current()
     };
 
@@ -72,6 +74,7 @@ public class AstronautManager : Singleton<AstronautManager>
 
             data.water -= waterLossPerInterval;
             data.food -= foodLossPerInterval;
+            data.bladder += waterLossPerInterval;
             data.fitness -= fitnessLossPerInterval;
 
             ClampStats();
@@ -113,6 +116,7 @@ public class AstronautManager : Singleton<AstronautManager>
         // apply loss
         data.food -= intervals * foodLossPerInterval;
         data.water -= intervals * waterLossPerInterval;
+        data.bladder += intervals * waterLossPerInterval;
         data.fitness -= intervals * fitnessLossPerInterval;
 
         ClampStats();
@@ -129,9 +133,15 @@ public class AstronautManager : Singleton<AstronautManager>
                 break;
             case "water":
                 data.water += change;
+                if (change < 0)
+                {
+                    data.bladder += change;
+                }
                 break;
             case "fitness":
                 data.fitness += change;
+                data.water -= change * 0.5f;
+                data.food -= change * 0.5f;
                 break;
         }
 
