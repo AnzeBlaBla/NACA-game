@@ -44,7 +44,6 @@ public class GreenHouseUIUpdate : MonoBehaviour
         {
             if (gardenSlotsUI != null)
             {
-
                 for (int i = 0; i < StorageManager.Instance.data.gardenSlots.Count; i++)
                 {
                     StorageManager.GardenSlot slot = StorageManager.Instance.data.gardenSlots[i];
