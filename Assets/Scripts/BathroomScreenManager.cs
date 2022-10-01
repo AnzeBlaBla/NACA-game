@@ -4,45 +4,25 @@ using UnityEngine;
 
 public class BathroomScreenManager : MonoBehaviour
 {
-    //Add curtain to the scene
     public GameObject curtain;
-    private bool curtainOpen = true;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
-    }
+        var _animation = curtain.GetComponent<Animation>();
 
-    //Function to close the curtain with sliding animation
-    public void CloseCurtain()
-    {
-        //Set the animation trigger to close the curtain
-        this.curtainOpen = false;
-        this.curtain.GetComponent<Animator>().SetTrigger("TrClose");
-    }
+    var clip = new AnimationClip();
+    var curve = AnimationCurve.Linear(0, -1056, 20, 0);
+    clip.SetCurve("Curtain", typeof(Transform), "anchoredPosition.x", curve);
 
-    public void OpenCurtain()
-    {
-        //Set the animation trigger to close the curtain
-        this.curtainOpen = true;
-        this.curtain.GetComponent<Animator>().SetTrigger("TrOpen");
-    }
+    curve = AnimationCurve.Linear(0, 0, 20, 0);
+    clip.SetCurve("Curtain", typeof(Transform), "anchoredPosition.y", curve);
 
-    private IEnumerator CloseOpenCurtain()
-    {
-        this.CloseCurtain();
-        yield return new WaitForSeconds(6);
-        this.OpenCurtain();
-    }
+    clip.name = "Curtain"; // set name
+    clip.legacy = true; // change to legacy
+    
+    _animation.clip = clip; // set default clip
+    _animation.AddClip(clip, clip.name); // add clip to animation component
 
-    public void runCloseOpenCurtain()
-    {
-        StartCoroutine(CloseOpenCurtain());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    _animation.Play("Curtain"); // play animation
     }
 }
