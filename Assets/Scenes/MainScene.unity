@@ -1092,6 +1092,7 @@ GameObject:
   - component: {fileID: 768085887}
   - component: {fileID: 768085888}
   - component: {fileID: 768085889}
+  - component: {fileID: 768085890}
   m_Layer: 3
   m_Name: Astronaut
   m_TagString: Astronaut
@@ -1128,7 +1129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScene: GameOverScene
-  astronautAnimation: {fileID: 768085889}
   lossIntervalOnlineMinutes: 0.2
   lossIntervalOfflineMinutes: 30
   waterLossPerInterval: 2
@@ -1182,11 +1182,26 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: b84ccc6004ed4441b9fc1c9efdd0c5c8, type: 2}
+  - {fileID: 7400000, guid: 21ce63b33796942ee95f33e261c025e7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &768085890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768085883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e639b48adf7a042c69ae3cc6b3f7c204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  astronautAnimation: {fileID: 768085889}
 --- !u!4 &772656478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
