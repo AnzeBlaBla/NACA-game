@@ -7,29 +7,18 @@
             "actions": [
                 {
                     "name": "Tap",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "5419edd4-1ec7-4d21-a185-e6197342048d",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "2c32f5f9-8d4f-4598-87b9-e6f0f528be0c",
-                    "path": "<Touchscreen>/primaryTouch/tap",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Touch",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "666cd4fe-db2c-476f-9c8e-c21ac56f02fc",
                     "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",

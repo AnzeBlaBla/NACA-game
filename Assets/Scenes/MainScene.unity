@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalScale.y
@@ -362,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1014,6 +1014,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5139aeb47a3be684cb2fd7b19159563f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  addRandomInitialVelocity: 1
+  randomVelocityRange: {x: -1, y: 1}
+  moveForceAmount: 10
   keepMomentum: 1
 --- !u!50 &768085888
 Rigidbody2D:
@@ -1029,7 +1032,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1102,7 +1105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: f6284860badba214c92f030c60a9c4aa, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -1113,10 +1116,54 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5419edd4-1ec7-4d21-a185-e6197342048d
+    m_ActionName: Interaction/Tap[/Mouse/press]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f54d07f4-2a26-4bc8-9c2d-6fbe9968eb93
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54440f59-9359-4413-b3fd-b7028e83cc16
+    m_ActionName: UI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e519d61-5e01-48a1-9964-a0b83955a40b
+    m_ActionName: UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3d307b8b-dad3-441b-b694-a10f6b628939
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7b53e6a4-b586-4ce2-8d2d-c86e4d7bd692
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7c976c8c-e680-45da-a416-6154f1774461
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 206435d2-57ab-44b1-bbab-8870739c8e18
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be215dec-1d40-4bac-afdc-342e62d7a5b2
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 673733a9-e158-4f0d-9e3b-318945af5e60
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ec44daa-96e4-4956-8388-1291c9979063
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultControlScheme: Keyboard&Mouse
+  m_DefaultActionMap: Interaction
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &897637491
@@ -1310,7 +1357,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1453,12 +1500,16 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1696,7 +1747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalScale.y
@@ -1704,7 +1755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2205,12 +2256,16 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 630995665918258993, guid: af871673d3a8ee243b1becd334913a0e, type: 3}
       propertyPath: m_LocalPosition.z
