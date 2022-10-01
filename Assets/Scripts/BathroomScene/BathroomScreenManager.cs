@@ -42,13 +42,15 @@ public class BathroomScreenManager : MonoBehaviour
         curtain.GetComponent<RectTransform>().anchoredPosition = position;
     }
 
-    IEnumerator closeAndOpenCurtain()
+    public IEnumerator closeAndOpenCurtain()
     {
         yield return StartCoroutine(closeCurtain());
         yield return new WaitForSeconds(3);
         yield return StartCoroutine(openCurtain());
         isInAnimation = false;
     }
+
+    
 
     public void GoToTheBathroom()
     {

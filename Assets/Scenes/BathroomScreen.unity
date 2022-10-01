@@ -767,6 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachPosition: {fileID: 1557915905}
+  bathroomScreenManager: {fileID: 1975513841}
   pushForce: {x: 2, y: 5}
 --- !u!114 &1557915909
 MonoBehaviour:

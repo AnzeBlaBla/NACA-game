@@ -7,11 +7,12 @@ public class Toilet : MonoBehaviour
     ClickableObject clickableObject;
     public Transform attachPosition;
 
+    public BathroomScreenManager bathroomScreenManager;
+
     public Vector2 pushForce;
     void Awake()
     {
         clickableObject = GetComponent<ClickableObject>();
-
         clickableObject.onClick += OnClick;
     }
 
@@ -25,8 +26,19 @@ public class Toilet : MonoBehaviour
 
         if (other.CompareTag("Astronaut"))
         {
-            AttachPlayer();
+            StartCoroutine(RunAutoToilet());
         }
+    }
+
+    IEnumerator RunAutoToilet()
+    {
+        AttachPlayer();
+        yield return StartCoroutine(this.bathroomScreenManager.closeAndOpenCurtain());
+        DetachPlayer();
+    }
+
+    public void OnClick(){
+
     }
 
 
@@ -64,15 +76,6 @@ public class Toilet : MonoBehaviour
         }
 
         astronaut = null;
-    }
-
-    // Update is called once per frame
-    void OnClick()
-    {
-        if (playerAttached)
-        {
-            DetachPlayer();
-        }
     }
 
     private void OnDestroy()
