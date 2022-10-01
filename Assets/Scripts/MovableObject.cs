@@ -72,7 +72,7 @@ public class MovableObject : MonoBehaviour
         }
     }
 
-    void Destroy()
+    void OnDestroy()
     {
         inputs.Interaction.Disable();
     }
