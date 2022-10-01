@@ -10,7 +10,7 @@ public class AstronautManager : Singleton<AstronautManager>
     private static string playerPrefsKey = "astronaut_stats";
 
     public string gameOverScene;
-    
+
     public Action onUpdate;
 
     public struct SaveData
@@ -51,7 +51,7 @@ public class AstronautManager : Singleton<AstronautManager>
 
 
         onUpdate += CheckFail;
-        
+
         onUpdate.Invoke();
 
         StartCoroutine(UpdateData());
@@ -66,7 +66,7 @@ public class AstronautManager : Singleton<AstronautManager>
         }
     }
 
-            IEnumerator UpdateData()
+    IEnumerator UpdateData()
     {
         while (true)
         {
@@ -83,7 +83,7 @@ public class AstronautManager : Singleton<AstronautManager>
 
         }
     }
-    
+
     public void SaveStats()
     {
         onUpdate.Invoke();
@@ -139,15 +139,35 @@ public class AstronautManager : Singleton<AstronautManager>
                 }
                 break;
             case "fitness":
-                data.fitness += change;
-                data.water -= change * 0.5f;
-                data.food -= change * 0.5f;
+                if (data.fitness < 100f)
+                {
+                    data.fitness += change;
+                    data.water -= change * 0.5f;
+                    data.food -= change * 0.5f;
+                }
                 break;
         }
 
         ClampStats();
 
         SaveStats();
+    }
+
+    public float GetStat(string name)
+    {
+        switch (name)
+        {
+            case "food":
+                return data.food;
+            case "water":
+                return data.water;
+            case "fitness":
+                return data.fitness;
+            case "bladder":
+                return data.bladder;
+        }
+
+        return 0f;
     }
 
     void ClampStats()
