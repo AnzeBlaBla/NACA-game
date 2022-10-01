@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class ScreenManager : Singleton<ScreenManager>
 {
+    public GameObject nextButton;
+    public GameObject backButton;
+
     public List<ScreenItem> screens;
     public int currentScreenIndex = 0;
 
@@ -75,5 +78,17 @@ public class ScreenManager : Singleton<ScreenManager>
         }
         catch { }
 
+    }
+
+    public void EnableButtons()
+    {
+        nextButton.SetActive(true);
+        backButton.SetActive(true);
+    }
+
+    public void DisableButtons()
+    {
+        nextButton.SetActive(false);
+        backButton.SetActive(false);
     }
 }
