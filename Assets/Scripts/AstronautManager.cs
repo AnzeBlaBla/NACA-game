@@ -13,6 +13,8 @@ public class AstronautManager : Singleton<AstronautManager>
 
     public Action onUpdate;
 
+    public Animation astronautAnimation;
+
     public struct SaveData
     {
         public float food;
