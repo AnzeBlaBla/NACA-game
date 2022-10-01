@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CantineScreen.unity
     guid: f6909d13c7d7d484ba0674c388d8a5a3
+  - enabled: 1
+    path: Assets/Scenes/FitnessScreen.unity
+    guid: 34a15db6b6b50b145b5198ef46d0d71f
   m_configObjects: {}

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ScreenManager : Singleton<ScreenManager>
 {
     public List<ScreenItem> screens;
     public int currentScreenIndex = 0;
 
-    public GameObject backgroundGO;
+    public Image background;
 
     public void Start()
     {
@@ -50,7 +51,7 @@ public class ScreenManager : Singleton<ScreenManager>
     public void LoadCurrentScreen()
     {
         SceneManager.LoadScene(screens[currentScreenIndex].sceneName, LoadSceneMode.Additive);
-        backgroundGO.GetComponent<SpriteRenderer>().color = screens[currentScreenIndex].backgroundColor;
+        background.color = screens[currentScreenIndex].backgroundColor;
     }
 
     public void UnloadScreen(int index)
