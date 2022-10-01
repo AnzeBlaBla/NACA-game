@@ -28,14 +28,16 @@ public class BathroomScreenManager : MonoBehaviour
         this.curtain.GetComponent<Animator>().SetTrigger("TrOpen");
     }
 
-    public void OpenCloseCurtain()
+    private IEnumerator CloseOpenCurtain()
     {
-        //Set the animation trigger to close the curtain
-        if(this.curtainOpen){
-            this.CloseCurtain();
-        }else{
-            this.OpenCurtain();
-        }
+        this.CloseCurtain();
+        yield return new WaitForSeconds(6);
+        this.OpenCurtain();
+    }
+
+    public void runCloseOpenCurtain()
+    {
+        StartCoroutine(CloseOpenCurtain());
     }
 
     // Update is called once per frame
