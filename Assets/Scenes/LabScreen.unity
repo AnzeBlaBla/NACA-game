@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5077737850306054422, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Name
-      value: Garedn Slot (3)
+      value: Garden Slot (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Pivot.x
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -161,15 +161,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -201,11 +201,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 636.25
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -626.25
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -237,7 +237,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5077737850306054422, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Name
-      value: Garedn Slot (1)
+      value: Garden Slot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Pivot.x
@@ -257,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -265,15 +265,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -305,11 +305,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 636.25
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -233.75
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -356,18 +356,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631813963}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1233269527}
+  m_Father: {fileID: 2142646523}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 280, y: 5}
-  m_SizeDelta: {x: 400, y: 100}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 250, y: 0}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &631813965
 MonoBehaviour:
@@ -562,13 +562,14 @@ GameObject:
   - component: {fileID: 704964578}
   - component: {fileID: 704964577}
   - component: {fileID: 704964576}
+  - component: {fileID: 704964579}
   m_Layer: 5
   m_Name: Greenhouse Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &704964575
 RectTransform:
   m_ObjectHideFlags: 0
@@ -583,7 +584,7 @@ RectTransform:
   m_Children:
   - {fileID: 1131117435}
   - {fileID: 1901846332}
-  - {fileID: 1233269527}
+  - {fileID: 2142646523}
   - {fileID: 1803218842}
   m_Father: {fileID: 974307512}
   m_RootOrder: -1
@@ -655,6 +656,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &704964579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704964574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fa5351f7325f14581e835f4d4f5c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gardenSlotsUI: {fileID: 1803218841}
+  textures:
+  - {fileID: 2800000, guid: 664ace18d3333544ab567e85501dc33a, type: 3}
+  - {fileID: 2800000, guid: ccb54e289d9608744a7ccf31c78fbd1a, type: 3}
+  - {fileID: 2800000, guid: 369ee5ab151bc4b4bb1fdb4676518fa4, type: 3}
 --- !u!1001 &792193938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -665,7 +683,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5077737850306054422, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Name
-      value: Garedn Slot (2)
+      value: Garden Slot (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Pivot.x
@@ -685,7 +703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -693,15 +711,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -733,11 +751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 243.75
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -626.25
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -946,6 +964,8 @@ GameObject:
   - component: {fileID: 1233269527}
   - component: {fileID: 1233269529}
   - component: {fileID: 1233269528}
+  - component: {fileID: 1233269530}
+  - component: {fileID: 1233269531}
   m_Layer: 5
   m_Name: Seeds
   m_TagString: Untagged
@@ -960,18 +980,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233269526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 631813964}
-  m_Father: {fileID: 704964575}
+  m_Children: []
+  m_Father: {fileID: 2142646523}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 75, y: 0}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1233269528
@@ -1009,6 +1028,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233269526}
   m_CullTransparentMesh: 1
+--- !u!114 &1233269530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233269526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc238e816cbc2a4ba29cd1189595964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 704964578}
+--- !u!225 &1233269531
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233269526}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1588656224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1701,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100497089}
   m_CullTransparentMesh: 1
+--- !u!1 &2142646522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142646523}
+  m_Layer: 5
+  m_Name: Seeds Container
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2142646523
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142646522}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1233269527}
+  - {fileID: 631813964}
+  m_Father: {fileID: 704964575}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -12.5, y: -100}
+  m_SizeDelta: {x: -75, y: 150}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &5077737848437619578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1667,7 +1749,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5077737850306054422, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Name
-      value: Garedn Slot
+      value: Garden Slot
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_Pivot.x
@@ -1687,7 +1769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1695,15 +1777,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 367.5
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1735,11 +1817,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 243.75
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -233.75
       objectReference: {fileID: 0}
     - target: {fileID: 5077737850306054423, guid: 1539509fbda194b41b80e378c23832b4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
