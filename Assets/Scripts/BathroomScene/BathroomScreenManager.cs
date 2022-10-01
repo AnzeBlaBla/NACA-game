@@ -30,7 +30,7 @@ public class BathroomScreenManager : MonoBehaviour
             curtain.GetComponent<RectTransform>().anchoredPosition = position;
             yield return new WaitForSeconds(0.1f);
         }
-        position.x = -Screen.width;
+        position.x = -Screen.width + 10;
         curtain.GetComponent<RectTransform>().anchoredPosition = position;
     }
 

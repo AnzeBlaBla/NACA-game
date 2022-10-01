@@ -8,7 +8,7 @@ public class Toilet : MonoBehaviour
     public Transform attachPosition;
 
     public Vector2 pushForce;
-    void Start()
+    void Awake()
     {
         clickableObject = GetComponent<ClickableObject>();
 
