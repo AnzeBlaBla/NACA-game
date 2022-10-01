@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FitnessScreen.unity
     guid: 34a15db6b6b50b145b5198ef46d0d71f
+  - enabled: 1
+    path: Assets/Scenes/LabScreen.unity
+    guid: eacc3bc66a3f141448a4b928ad84ee80
   m_configObjects: {}

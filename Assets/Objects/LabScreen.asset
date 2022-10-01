@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LabScreen
   m_EditorClassIdentifier: 
   sceneName: LabScreen
-  backgroundColor: {r: 1, g: 0.6849533, b: 0.6650944, a: 0}
+  backgroundColor: {r: 1, g: 0.6849533, b: 0.6650944, a: 1}
