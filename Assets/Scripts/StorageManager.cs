@@ -22,6 +22,8 @@ public class StorageManager : Singleton<StorageManager>
   {
     public List<GardenSlot> gardenSlots;
     public int foodAmount;
+    public float filteredWater;
+    public float unfilteredWater;
   }
 
   public SaveData data = new SaveData()
@@ -33,7 +35,9 @@ public class StorageManager : Singleton<StorageManager>
             new GardenSlot() { index = 2, saveTime = 0, growTime = 10 },
             new GardenSlot() { index = 3, saveTime = 0, growTime = 10 },
         },
-    foodAmount = 0
+    foodAmount = 0,
+    filteredWater = 0f,
+    unfilteredWater = 0f
   };
 
   private void Start()
