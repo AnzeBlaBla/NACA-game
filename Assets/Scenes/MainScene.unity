@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 440815117}
   - component: {fileID: 440815119}
   - component: {fileID: 440815120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Astronaut
   m_Icon: {fileID: 0}
@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 768085886}
   - component: {fileID: 768085887}
   - component: {fileID: 768085888}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Astronaut
   m_TagString: Astronaut
   m_Icon: {fileID: 0}

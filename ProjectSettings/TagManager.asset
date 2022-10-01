@@ -9,7 +9,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Astronaut
   - Water
   - UI
   - PostProcessing
@@ -37,7 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - NoAstronautCollision
   m_SortingLayers:
   - name: Default
     uniqueID: 0

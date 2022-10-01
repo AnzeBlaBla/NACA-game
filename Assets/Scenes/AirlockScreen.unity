@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 549524128}
   - component: {fileID: 549524130}
   - component: {fileID: 549524131}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: AirLock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
