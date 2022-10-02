@@ -8,6 +8,8 @@ public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 {
   [SerializeField] private Texture[] textures;
   [SerializeField] private int growTime = 30;
+  [SerializeField] private GameObject plantSound;
+  [SerializeField] private GameObject harvestSound;
 
   private int GetCurrentIndex()
   {
@@ -45,6 +47,8 @@ public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
       PutGardenSlot(slotIndex, Epoch.Current());
 
       SaveGardenSlots(true);
+
+      plantSound.GetComponent<AudioSource>().Play();
     }
   }
 
@@ -61,6 +65,8 @@ public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
         SaveGardenSlots(false);
 
         StorageManager.Instance.data.foodAmount += 1;
+
+        harvestSound.GetComponent<AudioSource>().Play();
       }
     }
   }
