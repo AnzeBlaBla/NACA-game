@@ -2428,14 +2428,6 @@ PrefabInstance:
       propertyPath: nextButton
       value: 
       objectReference: {fileID: 669273880}
-    - target: {fileID: 7032875378937317706, guid: bba136766424f1a4da0ab6f64534b8fb, type: 3}
-      propertyPath: screens.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7032875378937317706, guid: bba136766424f1a4da0ab6f64534b8fb, type: 3}
-      propertyPath: screens.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f925adc5787e1b429eb8825f67df1c8, type: 2}
     - target: {fileID: 7032875378937317707, guid: bba136766424f1a4da0ab6f64534b8fb, type: 3}
       propertyPath: m_RootOrder
       value: 0
