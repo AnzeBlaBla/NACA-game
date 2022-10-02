@@ -9,7 +9,7 @@ public class TutorialController : MonoBehaviour
     private void Awake()
     {
         string playerPrefsKey = "tutorial_" + tutorialCanvasId;
-        if (PlayerPrefs.GetInt(playerPrefsKey, 1) == 1)
+        if (PlayerPrefs.GetInt(playerPrefsKey, 0) == 1)
         {
             gameObject.SetActive(false);
         }
