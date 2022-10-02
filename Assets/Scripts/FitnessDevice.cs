@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ClickableObject))]
 public class FitnessDevice : MonoBehaviour
@@ -42,6 +43,9 @@ public class FitnessDevice : MonoBehaviour
 
     void AttachPlayer()
     {
+        if(AstronautManager.Instance.GetStat("fitness") >= 100){
+            return;
+        } 
         playerAttached = true;
 
         astronaut = AstronautManager.Instance.gameObject;
@@ -76,10 +80,11 @@ public class FitnessDevice : MonoBehaviour
         {
             rb.AddForce(pushForce, ForceMode2D.Impulse);
         }
+        astronaut.transform.SetParent(null);
+        //Move to main scene using unity scene manager
+        SceneManager.MoveGameObjectToScene(astronaut, SceneManager.GetActiveScene());
 
         astronaut = null;
-
-        astronaut.transform.SetParent(null);
 
         tapButton.SetActive(false);
     }
@@ -96,6 +101,9 @@ public class FitnessDevice : MonoBehaviour
     {
         AstronautManager.Instance.ChangeStat("fitness", 0.5f);
         astronaut.transform.position = astronaut.transform.position + runningPosition;
+        if(AstronautManager.Instance.GetStat("fitness") >= 100){
+            DetachPlayer();
+        }
     }
 
     void Update()
