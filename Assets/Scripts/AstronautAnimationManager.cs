@@ -29,20 +29,15 @@ public class AstronautAnimationManager : MonoBehaviour
         } while ( animation.isPlaying );
     }
 
-    public void lockAstronaut(Vector3 position)
-    {
+    public void lockAstronaut(Vector3 position = default(Vector3)){
+
         GameObject astronaut = AstronautManager.Instance.gameObject;
 
         astronaut.GetComponent<MovableObject>().enabled = false;
-        Rigidbody2D rb = astronaut.GetComponent<Rigidbody2D>();
 
-        rb.velocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        rb.isKinematic = true;
-
-        astronaut.transform.rotation = Quaternion.identity;
-
-        astronaut.transform.position = position;
+        if(position != default(Vector3)){
+            transform.position = position;
+        }
     }
 
     public void unlockAstronaut()

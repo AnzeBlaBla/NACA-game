@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1145849445}
   - component: {fileID: 1145849447}
   - component: {fileID: 1145849448}
+  - component: {fileID: 1145849449}
   m_Layer: 0
   m_Name: AirLock
   m_TagString: Untagged
@@ -222,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenToGoTo: {fileID: 11400000, guid: 2c9e17b88e3d9ea49b2a72e651b1ebe6, type: 2}
+  isItOutside: 0
 --- !u!61 &1145849448
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -248,3 +250,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.8, y: 1.3901591}
   m_EdgeRadius: 0
+--- !u!50 &1145849449
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145849444}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

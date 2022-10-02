@@ -80,8 +80,9 @@ public class ScreenManager : Singleton<ScreenManager>
         {
             background.gameObject.SetActive(false);
         }
-
-        AstronautManager.Instance.gameObject.GetComponent<MovableObject>().ResetPosition();
+        if(isGoingInsideOrOutside == false){
+            AstronautManager.Instance.gameObject.GetComponent<MovableObject>().ResetPosition();
+        }
 
         if (oldScreen != null)
         {
