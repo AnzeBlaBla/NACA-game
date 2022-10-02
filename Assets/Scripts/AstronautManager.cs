@@ -75,46 +75,7 @@ public class AstronautManager : Singleton<AstronautManager>
             SceneManager.LoadScene(gameOverScene);
         }
 
-        float notifAtValue = 20f;
-
-        AppNotificationManager.Instance.CancelChannelNotifications("astronaut");
-
-        // Food notification
-        if (data.food > notifAtValue)
-        {
-            float foodToNotif = data.food - notifAtValue;
-
-            DateTime notifAt = Epoch.ToDateTime().AddMinutes(foodToNotif / foodLossPerInterval * lossIntervalOfflineMinutes);
-
-            // Schedule notifications
-            AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()
-            {
-                title = "Yuri is hungry!",
-                description = "Make sure Yuri eats something...",
-                deliveryTime = notifAt,
-                channel = AppNotificationManager.Instance.notificationChannels["astronaut"].id,
-                badgeNumber = 1,
-            });
-        }
-
-        // Water notification
-
-        if (data.water > notifAtValue)
-        {
-            float waterToNotif = data.water - notifAtValue;
-
-            DateTime notifAt = Epoch.ToDateTime().AddMinutes(waterToNotif / waterLossPerInterval * lossIntervalOfflineMinutes);
-
-            // Schedule notifications
-            AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()
-            {
-                title = "Yuri is thirsty!",
-                description = "Make sure Yuri drinks something...",
-                deliveryTime = notifAt,
-                channel = AppNotificationManager.Instance.notificationChannels["astronaut"].id,
-                badgeNumber = 1,
-            });
-        }
+        
     }
 
     IEnumerator UpdateData()
