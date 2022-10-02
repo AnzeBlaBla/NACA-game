@@ -6,66 +6,67 @@ using UnityEngine.InputSystem;
 
 public class DragObjectSpawner : MonoBehaviour
 {
-  GameInputs inputs;
+    GameInputs inputs;
 
-  GameObject held;
+    GameObject held;
 
-  public GameObject toSpawn;
-  public string useItem;
-    
-  void Start()
-  {
+    public GameObject toSpawn;
+    public string useItem;
+    public float useAmount = 1f;
 
-    inputs = new GameInputs();
-    inputs.Interaction.Enable();
-    inputs.Interaction.Tap.performed += ctx => SpawnObject(ctx);
-    inputs.Interaction.Tap.canceled += ctx => StopHold(ctx);
-
-  }
-
-  void SpawnObject(InputAction.CallbackContext ctx)
-  {
-    Vector2 mousePos = PointerPos();
-
-    // get object under mouse
-    RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-    // if hit this or child
-    if (hit.collider != null && (hit.collider.gameObject == gameObject || hit.collider.gameObject.transform.IsChildOf(transform)))
+    void Start()
     {
-      if (StorageManager.Instance.GetData(useItem) > 0)
-      {
-        held = Instantiate(toSpawn, mousePos, Quaternion.identity);
-        StorageManager.Instance.ChangeData(useItem, -1f);
-      }
-    }
-  }
 
-  void StopHold(InputAction.CallbackContext ctx)
-  {
-    if (held != null)
+        inputs = new GameInputs();
+        inputs.Interaction.Enable();
+        inputs.Interaction.Tap.performed += ctx => SpawnObject(ctx);
+        inputs.Interaction.Tap.canceled += ctx => StopHold(ctx);
+
+    }
+
+    void SpawnObject(InputAction.CallbackContext ctx)
     {
-      Destroy(held);
+        Vector2 mousePos = PointerPos();
 
-      StorageManager.Instance.ChangeData(useItem, 1f);
+        // get object under mouse
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+        // if hit this or child
+        if (hit.collider != null && (hit.collider.gameObject == gameObject || hit.collider.gameObject.transform.IsChildOf(transform)))
+        {
+            if (StorageManager.Instance.GetData(useItem) > 0)
+            {
+                held = Instantiate(toSpawn, mousePos, Quaternion.identity);
+                StorageManager.Instance.ChangeData(useItem, useAmount * -1);
+            }
+        }
     }
-  }
 
-  private void Update()
-  {
-    if (held != null)
+    void StopHold(InputAction.CallbackContext ctx)
     {
-      held.transform.position = PointerPos();
+        if (held != null)
+        {
+            Destroy(held);
+
+            StorageManager.Instance.ChangeData(useItem, useAmount);
+        }
     }
-  }
 
-  void OnDestroy()
-  {
-    inputs.Interaction.Disable();
-  }
+    private void Update()
+    {
+        if (held != null)
+        {
+            held.transform.position = PointerPos();
+        }
+    }
 
-  Vector2 PointerPos()
-  {
-    return Camera.main.ScreenToWorldPoint(inputs.Interaction.PointerPosition.ReadValue<Vector2>());
-  }
+    void OnDestroy()
+    {
+        inputs.Interaction.Disable();
+    }
+
+    Vector2 PointerPos()
+    {
+        return Camera.main.ScreenToWorldPoint(inputs.Interaction.PointerPosition.ReadValue<Vector2>());
+    }
 }

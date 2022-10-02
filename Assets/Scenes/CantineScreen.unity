@@ -224,6 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn: {fileID: 7613166668762073646, guid: c47184040771e62409ac2afe7d193058, type: 3}
   useItem: foodAmount
+  useAmount: 1
 --- !u!61 &528123067
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -372,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toSpawn: {fileID: 7613166668762073646, guid: 9a11978baa6c43c4d90473b5992a8b98, type: 3}
   useItem: filteredWater
+  useAmount: 5
 --- !u!61 &1876709155
 BoxCollider2D:
   m_ObjectHideFlags: 0
