@@ -46,6 +46,9 @@ public class Toilet : MonoBehaviour
         StorageManager.Instance.data.unfilteredWater += AstronautManager.Instance.data.bladder;
         AstronautManager.Instance.data.bladder = 0f;
 
+        StorageManager.Instance.SaveData();
+        AstronautManager.Instance.SaveStats();
+
         DetachPlayer();
     }
 

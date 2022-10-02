@@ -6,69 +6,71 @@ using TMPro;
 
 public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 {
-  [SerializeField] private Texture[] textures;
-  [SerializeField] private int growTime = 30;
-  [SerializeField] private GameObject plantSound;
-  [SerializeField] private GameObject harvestSound;
+    [SerializeField] private Texture[] textures;
+    [SerializeField] private int growTime = 30;
+    [SerializeField] private GameObject plantSound;
+    [SerializeField] private GameObject harvestSound;
 
-  private int GetCurrentIndex()
-  {
-    return transform.GetSiblingIndex();
-  }
-
-
-  private void SaveGardenSlots(bool isPlanting)
-  {
-    StorageManager.Instance.SaveData();
-
-    GameObject seed = gameObject.transform.GetChild(0).gameObject;
-    seed.GetComponent<UnityEngine.UI.RawImage>().texture = isPlanting ? textures[0] : textures[textures.Length - 1];
-
-    GameObject timeLeft = gameObject.transform.GetChild(2).gameObject;
-    timeLeft.GetComponent<TextMeshProUGUI>().text = isPlanting ? Epoch.SecondsToDisplay(growTime) : "";
-  }
-
-  private void PutGardenSlot(int slotIndex, int saveTime)
-  {
-    StorageManager.Instance.data.gardenSlots[slotIndex] = new StorageManager.GardenSlot()
+    private int GetCurrentIndex()
     {
-      index = slotIndex,
-      saveTime = saveTime,
-      growTime = growTime
-    };
-  }
-
-  public void OnDrop(PointerEventData eventData)
-  {
-    int slotIndex = GetCurrentIndex();
-
-    if (StorageManager.Instance.data.gardenSlots[slotIndex].saveTime == 0)
-    {
-      PutGardenSlot(slotIndex, Epoch.Current());
-
-      SaveGardenSlots(true);
-
-      plantSound.GetComponent<AudioSource>().Play();
+        return transform.GetSiblingIndex();
     }
-  }
 
-  public void OnPointerDown(PointerEventData eventData)
-  {
-    int slotIndex = GetCurrentIndex();
 
-    if (StorageManager.Instance.data.gardenSlots[slotIndex].saveTime != 0)
+    private void SaveGardenSlots(bool isPlanting)
     {
-      if (Epoch.SecondsElapsed(StorageManager.Instance.data.gardenSlots[slotIndex].saveTime) >= StorageManager.Instance.data.gardenSlots[slotIndex].growTime)
-      {
-        PutGardenSlot(slotIndex, 0);
+        StorageManager.Instance.SaveData();
 
-        SaveGardenSlots(false);
+        GameObject seed = gameObject.transform.GetChild(0).gameObject;
+        seed.GetComponent<UnityEngine.UI.RawImage>().texture = isPlanting ? textures[0] : textures[textures.Length - 1];
 
-        StorageManager.Instance.data.foodAmount += 1;
-
-        harvestSound.GetComponent<AudioSource>().Play();
-      }
+        GameObject timeLeft = gameObject.transform.GetChild(2).gameObject;
+        timeLeft.GetComponent<TextMeshProUGUI>().text = isPlanting ? Epoch.SecondsToDisplay(growTime) : "";
     }
-  }
+
+    private void PutGardenSlot(int slotIndex, int saveTime)
+    {
+        StorageManager.Instance.data.gardenSlots[slotIndex] = new StorageManager.GardenSlot()
+        {
+            index = slotIndex,
+            saveTime = saveTime,
+            growTime = growTime
+        };
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        int slotIndex = GetCurrentIndex();
+
+        if (StorageManager.Instance.data.gardenSlots[slotIndex].saveTime == 0)
+        {
+            PutGardenSlot(slotIndex, Epoch.Current());
+
+            SaveGardenSlots(true);
+
+            plantSound.GetComponent<AudioSource>().Play();
+        }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        int slotIndex = GetCurrentIndex();
+
+        if (StorageManager.Instance.data.gardenSlots[slotIndex].saveTime != 0)
+        {
+            if (Epoch.SecondsElapsed(StorageManager.Instance.data.gardenSlots[slotIndex].saveTime) >= StorageManager.Instance.data.gardenSlots[slotIndex].growTime)
+            {
+                PutGardenSlot(slotIndex, 0);
+
+                SaveGardenSlots(false);
+
+                StorageManager.Instance.data.foodAmount += 1;
+
+                StorageManager.Instance.SaveData();
+
+                harvestSound.GetComponent<AudioSource>().Play();
+            }
+        }
+    }
 }
 
