@@ -11,8 +11,6 @@ public class AppNotificationManager : MonoBehaviour
 {
     [SerializeField, Tooltip("Reference to the notification manager.")]
     public GameNotificationsManager manager;
-    [SerializeField]
-    public TextMeshProUGUI notificationScheduledText;
 
     private const string NOTIFICATION_CHANNEL_ID = "notification_channel_id";
     private const string GAME_NOTIFICATION_CHANNEL_TITLE = "Get back to the game!";
@@ -33,8 +31,6 @@ public class AppNotificationManager : MonoBehaviour
         InitializeGameChannel();
         //
         ScheduleNotificationForUnactivity();
-        //
-        DisplayPendingNotification();
     }
 
     private void InitializeGameChannel()
@@ -84,23 +80,5 @@ public class AppNotificationManager : MonoBehaviour
         //
         Debug.Log($"Queued notification for unactivity with ID \"{notification.Id}\" at time {deliveryTime:dd.MM.yyyy HH:mm:ss}");
     }
-
-    private void DisplayPendingNotification()
-    {
-        StringBuilder notificationStringBuilder = new StringBuilder("Pending notifications at:");
-        notificationStringBuilder.AppendLine();
-        for (int i = manager.PendingNotifications.Count - 1; i >= 0; --i)
-        {
-            PendingNotification queuedNotification = manager.PendingNotifications[i];
-            DateTime? time = queuedNotification.Notification.DeliveryTime;
-            if (time != null)
-            {
-                notificationStringBuilder.Append($"{time:dd.MM.yyyy HH:mm:ss}");
-                notificationStringBuilder.AppendLine();
-            }
-        }
-        notificationScheduledText.text = notificationStringBuilder.ToString();
-    }
-
 
 }

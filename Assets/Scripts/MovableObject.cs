@@ -35,15 +35,15 @@ public class MovableObject : MonoBehaviour
         inputs = new GameInputs();
 
         inputs.Interaction.Enable();
-
-        inputs.Interaction.Tap.performed += ctx => StartHold(ctx);
-        inputs.Interaction.Tap.canceled += ctx => StopHold(ctx);
+        
+        inputs.Interaction.Tap.performed += ctx => StartHold();
+        inputs.Interaction.Tap.canceled += ctx => StopHold();
 
         ResetPosition();
 
     }
 
-    void StartHold(InputAction.CallbackContext ctx)
+    void StartHold()
     {
         Vector2 mousePos = PointerPos();
 
@@ -58,7 +58,7 @@ public class MovableObject : MonoBehaviour
         }
     }
 
-    void StopHold(InputAction.CallbackContext ctx)
+    void StopHold()
     {
         held = false;
 
@@ -67,7 +67,6 @@ public class MovableObject : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
     }
-
     void OnDestroy()
     {
         inputs.Interaction.Disable();
