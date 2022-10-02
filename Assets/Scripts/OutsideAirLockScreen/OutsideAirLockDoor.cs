@@ -19,8 +19,11 @@ public class OutsideAirLockDoor : MonoBehaviour
     }
 
     void Start(){
-        ScreenManager.Instance.DisableButtons();
-        StartCoroutine(this.openDoor(true));
+        if(ScreenManager.Instance.isGoingInsideOrOutside){
+            ScreenManager.Instance.isGoingInsideOrOutside = false;
+            ScreenManager.Instance.DisableButtons();
+            StartCoroutine(this.openDoor(true));
+        }
     }
 
     IEnumerator openDoor(bool goingOut){
@@ -64,6 +67,7 @@ public class OutsideAirLockDoor : MonoBehaviour
     IEnumerator goInside(){
         yield return StartCoroutine(openDoor(false));
         ScreenManager.Instance.EnableButtons();
+        ScreenManager.Instance.isGoingInsideOrOutside = true;
         ScreenManager.Instance.LoadScreen(insideScreenItem);
     }
 
