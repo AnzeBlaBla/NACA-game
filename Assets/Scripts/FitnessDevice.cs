@@ -106,7 +106,7 @@ public class FitnessDevice : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (playerAttached)
         {
