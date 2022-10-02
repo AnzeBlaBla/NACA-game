@@ -567,7 +567,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 488015405}
-  notificationScheduledText: {fileID: 957966300}
 --- !u!114 &488015405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2640,6 +2639,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2358807906595874986, guid: 1daa2a08794289e4c80dc0dfb2e0087a, type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2358807906595874986, guid: 1daa2a08794289e4c80dc0dfb2e0087a, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 21ce63b33796942ee95f33e261c025e7, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1daa2a08794289e4c80dc0dfb2e0087a, type: 3}
