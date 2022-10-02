@@ -420,7 +420,7 @@ MonoBehaviour:
   pushForce: {x: -2, y: -3}
   tapButton: {fileID: 171951112}
   followDistance: 1
-  runningPosition: {x: 0.25, y: 0, z: 0}
+  runningPosition: {x: 0.5, y: 0, z: 0}
 --- !u!114 &779535445
 MonoBehaviour:
   m_ObjectHideFlags: 0
