@@ -38,4 +38,17 @@ public static class Epoch
         return days + "d " + hours + "h " + minutes + "m " + seconds + "s";
     }
 
+    public static DateTime ToDateTime(int epoch)
+    {
+        DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        DateTime time = epochStart.AddSeconds(epoch);
+
+        return time;
+    }
+
+    public static DateTime ToDateTime()
+    {
+        return ToDateTime(Current());
+    }
+
 }

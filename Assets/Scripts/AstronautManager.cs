@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class AstronautManager : Singleton<AstronautManager>
 {
+
+    public bool placeholder = false;
+
     private static string playerPrefsKey = "astronaut_stats";
 
     public string mainScene;
@@ -48,22 +51,68 @@ public class AstronautManager : Singleton<AstronautManager>
 
     private void Start()
     {
+        if (placeholder)
+        {
+            return;
+        }
+
         LoadStats();
 
 
-        onUpdate += CheckFail;
+        onUpdate += OnDataUpdate;
 
         onUpdate.Invoke();
 
         StartCoroutine(UpdateData());
     }
 
-    void CheckFail()
+    void OnDataUpdate()
     {
+        // Check fail
         if (data.food <= 0 || data.water <= 0)
         {
             // Load game over scene
             SceneManager.LoadScene(gameOverScene);
+        }
+
+        float notifAtValue = 20f;
+
+        // Food notification
+
+        if (data.food > notifAtValue)
+        {
+            float foodToNotif = data.food - notifAtValue;
+
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes(foodToNotif / foodLossPerInterval * lossIntervalOnlineMinutes);
+
+            // Schedule notifications
+            AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()
+            {
+                title = "Yuri is hungry!",
+                description = "Make sure Yuri eats something...",
+                deliveryTime = notifAt,
+                channel = AppNotificationManager.Instance.notificationChannels["astronaut"].id,
+                badgeNumber = 1,
+            });
+        }
+
+        // Water notification
+
+        if (data.water > notifAtValue)
+        {
+            float waterToNotif = data.water - notifAtValue;
+
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes(waterToNotif / waterLossPerInterval * lossIntervalOnlineMinutes);
+
+            // Schedule notifications
+            AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()
+            {
+                title = "Yuri is thirsty!",
+                description = "Make sure Yuri drinks something...",
+                deliveryTime = notifAt,
+                channel = AppNotificationManager.Instance.notificationChannels["astronaut"].id,
+                badgeNumber = 1,
+            });
         }
     }
 
