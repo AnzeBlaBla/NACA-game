@@ -116,14 +116,24 @@ public class AppNotificationManager : Singleton<AppNotificationManager>
 
     public void CancelChannelNotifications(string channelName)
     {
+        if (manager.PendingNotifications == null)
+        {
+            return;
+        }
         GameNotificationChannel channel = notificationChannels[channelName].channel;
 
+        List<int> cancelIds = new List<int>();
         foreach (var notification in manager.PendingNotifications)
         {
             if (notification.Notification.Group == channel.Id)
             {
-                manager.CancelNotification((int)notification.Notification.Id);
+                cancelIds.Add((int)notification.Notification.Id);
             }
+        }
+
+        foreach (var id in cancelIds)
+        {
+            manager.CancelNotification(id);
         }
     }
 

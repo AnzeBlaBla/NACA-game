@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 528123063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -2.8, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693189541dbb1ad438c52b8a362f8739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptySprite: {fileID: 21300000, guid: 647aa03a2768b8d49a2c0699c421f8f9, type: 3}
+  fullSprite: {fileID: 21300000, guid: 02a412e1ed132494e919ef6b3f754438, type: 3}
   toSpawn: {fileID: 7613166668762073646, guid: c47184040771e62409ac2afe7d193058, type: 3}
   useItem: foodAmount
   useAmount: 1
@@ -238,18 +240,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05292988, y: -2.3818364}
+  m_Offset: {x: 0.008367121, y: -0.5689578}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 17.64, y: 19.2}
+    oldSize: {x: 2.88, y: 3.53}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 17.40819, y: 14.6558485}
+  m_Size: {x: 2.9578843, y: 2.4391289}
   m_EdgeRadius: 0
 --- !u!50 &528123068
 Rigidbody2D:
@@ -353,7 +355,7 @@ Transform:
   m_GameObject: {fileID: 1876709151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: -2.8, z: 0}
-  m_LocalScale: {x: 0.5316716, y: 0.5316716, z: 1.0633432}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -371,6 +373,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693189541dbb1ad438c52b8a362f8739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptySprite: {fileID: 21300000, guid: 647aa03a2768b8d49a2c0699c421f8f9, type: 3}
+  fullSprite: {fileID: 21300000, guid: 214da367c645e5349ab25c0a5cf7dae2, type: 3}
   toSpawn: {fileID: 7613166668762073646, guid: 9a11978baa6c43c4d90473b5992a8b98, type: 3}
   useItem: filteredWater
   useAmount: 5
@@ -387,18 +391,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009955168, y: -0.43803486}
+  m_Offset: {x: 0.006778717, y: -0.597008}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.27, y: 3.58}
+    oldSize: {x: 2.88, y: 3.53}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.3295455, y: 2.7521365}
+  m_Size: {x: 3.061801, y: 2.4341903}
   m_EdgeRadius: 0
 --- !u!50 &1876709156
 Rigidbody2D:

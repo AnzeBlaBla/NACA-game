@@ -10,20 +10,35 @@ public class DragObjectSpawner : MonoBehaviour
 
     GameObject held;
 
+    public Sprite emptySprite;
+    public Sprite fullSprite;
+
     public GameObject toSpawn;
     public string useItem;
     public float useAmount = 1f;
 
     void Start()
     {
-
         inputs = new GameInputs();
         inputs.Interaction.Enable();
         inputs.Interaction.Tap.performed += ctx => SpawnObject(ctx);
         inputs.Interaction.Tap.canceled += ctx => StopHold(ctx);
 
+        StorageManager.Instance.onUpdate += SetSprite;
+        SetSprite();
     }
 
+    void SetSprite()
+    {
+        if (StorageManager.Instance.GetData(useItem) > 0)
+        {
+            GetComponent<SpriteRenderer>().sprite = fullSprite;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = emptySprite;
+        }
+    }
     void SpawnObject(InputAction.CallbackContext ctx)
     {
         Vector2 mousePos = PointerPos();
@@ -62,6 +77,9 @@ public class DragObjectSpawner : MonoBehaviour
 
     void OnDestroy()
     {
+        if(StorageManager.Instance != null)
+            StorageManager.Instance.onUpdate -= SetSprite;
+
         inputs.Interaction.Disable();
     }
 
