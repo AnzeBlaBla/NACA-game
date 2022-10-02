@@ -29,7 +29,7 @@ public class AstronautAnimationManager : MonoBehaviour
         } while ( animation.isPlaying );
     }
 
-    public void lockAstronaut(Vector3 position = new Vector3(0,0,0))
+    public void lockAstronaut()
     {
         GameObject astronaut = AstronautManager.Instance.gameObject;
 
