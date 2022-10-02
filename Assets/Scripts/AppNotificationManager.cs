@@ -176,6 +176,7 @@ public class AppNotificationManager : Singleton<AppNotificationManager>
     public void ScheduleOfflineNotifications()
     {
         CancelAllNotifications();
+        manager.DismissAllNotifications();
 
         StorageManager sm = StorageManager.Instance;
 
