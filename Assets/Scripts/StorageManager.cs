@@ -49,70 +49,9 @@ public class StorageManager : Singleton<StorageManager>
 
     private void Start()
     {
-        onUpdate += OnDataUpdate;
         LoadData();
 
         StartCoroutine(FilterWater());
-    }
-
-    void OnDataUpdate()
-    {
-        AppNotificationManager.Instance.CancelChannelNotifications("ship");
-
-
-        // if garden empty
-
-        bool isEmpty = true;
-
-        foreach (var slot in data.gardenSlots)
-        {
-            if (slot.saveTime > 0)
-            {
-                isEmpty = false;
-                break;
-            }
-        }
-
-        if (isEmpty)
-        {
-            AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()
-            {
-                title = "Garden is empty!",
-                description = "The garden is empty. You should plant some seeds.",
-                deliveryTime = Epoch.ToDateTime(Epoch.Current() + (int)(gardenEmptyReminderTimeMinutes * 60)),
-                channel = AppNotificationManager.Instance.notificationChannels["ship"].id,
-                badgeNumber = 1,
-            });
-
-        }
-        else
-        {
-            // calculate when it will be all ready
-
-            int readyTime = 0;
-
-            foreach (var slot in data.gardenSlots)
-            {
-                if (slot.saveTime > 0)
-                {
-                    int timeLeft = slot.saveTime + slot.growTime - Epoch.Current();
-
-                    if (timeLeft > readyTime)
-                    {
-                        readyTime = timeLeft;
-                    }
-                }
-            }
-
-            AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()
-            {
-                title = "Garden is ready!",
-                description = "The garden is ready. You should harvest it.",
-                deliveryTime = Epoch.ToDateTime(Epoch.Current() + readyTime),
-                channel = AppNotificationManager.Instance.notificationChannels["ship"].id,
-                badgeNumber = 1,
-            });
-        }
     }
 
     IEnumerator FilterWater()
@@ -163,7 +102,7 @@ public class StorageManager : Singleton<StorageManager>
 
             if (filterCount > 0)
             {
-                if(filterCount > data.unfilteredWater)
+                if (filterCount > data.unfilteredWater)
                 {
                     filterCount = (int)data.unfilteredWater;
                 }

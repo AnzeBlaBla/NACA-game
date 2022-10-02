@@ -17,6 +17,8 @@ public class FitnessDevice : MonoBehaviour
     public float runningSpeed = 0.5f;
     public float trackSpeed = 0.2f;
 
+    public float waterFoodMinLimit = 10f;
+
     void Awake()
     {
         clickableObject = GetComponent<ClickableObject>();
@@ -44,9 +46,9 @@ public class FitnessDevice : MonoBehaviour
 
     void AttachPlayer()
     {
-        if(AstronautManager.Instance.GetStat("fitness") >= 100){
+        if(CheckStats()){
             return;
-        } 
+        }
         playerAttached = true;
 
         astronaut = AstronautManager.Instance.gameObject;
@@ -70,6 +72,10 @@ public class FitnessDevice : MonoBehaviour
 
     void DetachPlayer(bool applyForce = true)
     {
+        if(astronaut == null)
+        {
+            return;
+        }
         playerAttached = false;
         
         astronaut.GetComponent<MovableObject>().enabled = true;
@@ -102,9 +108,18 @@ public class FitnessDevice : MonoBehaviour
     {
         AstronautManager.Instance.ChangeStat("fitness", 0.5f);
         astronaut.transform.position = astronaut.transform.position + new Vector3(this.runningSpeed, 0, 0);
-        if(AstronautManager.Instance.GetStat("fitness") >= 100){
+        CheckStats();
+    }
+
+    bool CheckStats(){
+        float fitness = AstronautManager.Instance.GetStat("fitness");
+        float food = AstronautManager.Instance.GetStat("food");
+        float water = AstronautManager.Instance.GetStat("water");
+        if(fitness >= 100 || water <= waterFoodMinLimit || food <= waterFoodMinLimit){
             DetachPlayer();
+            return true;
         }
+        return false;
     }
 
     void FixedUpdate()

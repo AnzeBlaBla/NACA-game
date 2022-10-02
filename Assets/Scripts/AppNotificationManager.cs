@@ -61,8 +61,44 @@ public class AppNotificationManager : Singleton<AppNotificationManager>
         DontDestroyOnLoad(gameObject);
 
         InitializeChannels();
-
     }
+
+
+    //public TextMeshProUGUI notificationScheduledText;
+    void Start()
+    {
+        //StartCoroutine(DisplayPendingNotifications());
+
+        AstronautManager.Instance.onUpdate += ScheduleOfflineNotifications;
+        StorageManager.Instance.onUpdate += ScheduleOfflineNotifications;
+    }
+
+    /*IEnumerator DisplayPendingNotifications()
+    {
+        while (true)
+        {
+            Debug.Log("Updating pending notifications");
+            StringBuilder notificationStringBuilder = new StringBuilder("Pending notifications at:");
+            notificationStringBuilder.AppendLine();
+            for (int i = manager.PendingNotifications.Count - 1; i >= 0; --i)
+            {
+                PendingNotification queuedNotification = manager.PendingNotifications[i];
+                DateTime? time = queuedNotification.Notification.DeliveryTime;
+                if (time != null)
+                {
+                    notificationStringBuilder.Append($"{time:dd.MM.yyyy HH:mm:ss}");
+                    // title
+                    notificationStringBuilder.Append($" - {queuedNotification.Notification.Title}");
+                    notificationStringBuilder.Append($" - {queuedNotification.Notification.Id}");
+                    notificationStringBuilder.AppendLine();
+                }
+            }
+            notificationScheduledText.text = notificationStringBuilder.ToString();
+
+            yield return new WaitForSeconds(1f);
+        }
+    }*/
+
 
     private void InitializeChannels()
     {
@@ -134,6 +170,145 @@ public class AppNotificationManager : Singleton<AppNotificationManager>
         foreach (var id in cancelIds)
         {
             manager.CancelNotification(id);
+        }
+    }
+
+    public void ScheduleOfflineNotifications()
+    {
+        CancelAllNotifications();
+        manager.DismissAllNotifications();
+
+        StorageManager sm = StorageManager.Instance;
+
+        // if garden empty
+        bool isEmpty = true;
+
+        foreach (var slot in sm.data.gardenSlots)
+        {
+            if (slot.saveTime > 0)
+            {
+                isEmpty = false;
+                break;
+            }
+        }
+
+        if (isEmpty)
+        {
+            SendNotification(new Notification()
+            {
+                title = "Garden is empty!",
+                description = "The garden is empty. You should plant some seeds.",
+                deliveryTime = Epoch.ToDateTime(Epoch.Current() + (int)(sm.gardenEmptyReminderTimeMinutes * 60)),
+                channel = notificationChannels["ship"].id,
+                badgeNumber = 1,
+            });
+
+        }
+        else
+        {
+            // calculate when it will be all ready
+
+            int readyTime = 0;
+
+            foreach (var slot in sm.data.gardenSlots)
+            {
+                if (slot.saveTime > 0)
+                {
+                    int timeLeft = slot.saveTime + slot.growTime - Epoch.Current();
+
+                    if (timeLeft > readyTime)
+                    {
+                        readyTime = timeLeft;
+                    }
+                }
+            }
+
+            // if ready time is more than 30sec away
+            if (readyTime > 30)
+            {
+                SendNotification(new Notification()
+                {
+                    title = "Garden is ready!",
+                    description = "The garden is ready. You should harvest it.",
+                    deliveryTime = Epoch.ToDateTime(Epoch.Current() + readyTime),
+                    channel = notificationChannels["ship"].id,
+                    badgeNumber = 1,
+                });
+            }
+
+        }
+
+        // Astronaut notifications
+
+        AstronautManager am = AstronautManager.Instance;
+
+        float notifAtValue = 20f;
+
+        CancelChannelNotifications("astronaut");
+
+        // Food notification
+        if (am.data.food > notifAtValue)
+        {
+            float foodToNotif = am.data.food - notifAtValue;
+
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes(foodToNotif / am.foodLossPerInterval * am.lossIntervalOfflineMinutes);
+
+            SendNotification(new Notification()
+            {
+                title = "Yuri is hungry!",
+                description = "Make sure Yuri eats something...",
+                deliveryTime = notifAt,
+                channel = notificationChannels["astronaut"].id,
+                badgeNumber = 1,
+            });
+        }
+        else
+        {
+            // Calculate when it will reach zero
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes((am.data.food / am.foodLossPerInterval * am.lossIntervalOfflineMinutes));
+
+            SendNotification(new Notification()
+            {
+                title = "Yuri is very hungry!",
+                description = "Make sure Yuri eats something...",
+                deliveryTime = notifAt,
+                channel = notificationChannels["astronaut"].id,
+                badgeNumber = 1,
+            });
+        }
+
+        // Water notification
+
+        if (am.data.water > notifAtValue)
+        {
+            float waterToNotif = am.data.water - notifAtValue;
+
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes(waterToNotif / am.waterLossPerInterval * am.lossIntervalOfflineMinutes);
+
+            // Schedule notifications
+            SendNotification(new Notification()
+            {
+                title = "Yuri is thirsty!",
+                description = "Make sure Yuri drinks something...",
+                deliveryTime = notifAt,
+                channel = notificationChannels["astronaut"].id,
+                badgeNumber = 1,
+            });
+        }
+        else
+        {
+            // Calculate when it will reach zero
+
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes((am.data.water / am.waterLossPerInterval * am.lossIntervalOfflineMinutes));
+
+            SendNotification(new Notification()
+            {
+                title = "Yuri is very thirsty!",
+                description = "Make sure Yuri drinks something...",
+                deliveryTime = notifAt,
+                channel = notificationChannels["astronaut"].id,
+                badgeNumber = 1,
+            });
         }
     }
 
