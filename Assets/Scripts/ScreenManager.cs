@@ -18,6 +18,8 @@ public class ScreenManager : Singleton<ScreenManager>
     public Image background;
     public TextMeshProUGUI title;
 
+    public bool isGoingInsideOrOutside = false;
+
     [SerializeField] private GameObject sceneSwitchSound;
 
     public void Start()
