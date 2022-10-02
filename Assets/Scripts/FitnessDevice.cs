@@ -19,7 +19,7 @@ public class FitnessDevice : MonoBehaviour
     {
         clickableObject = GetComponent<ClickableObject>();
 
-        clickableObject.onClick += OnClick;
+        // clickableObject.onClick += OnClick;
     }
 
     private void Start()
@@ -56,6 +56,8 @@ public class FitnessDevice : MonoBehaviour
 
         astronaut.transform.rotation = Quaternion.identity;
 
+        astronaut.transform.SetParent(transform);
+
         astronaut.transform.position = attachPosition.position;
 
         tapButton.SetActive(true);
@@ -76,6 +78,8 @@ public class FitnessDevice : MonoBehaviour
         }
 
         astronaut = null;
+
+        astronaut.transform.SetParent(null);
 
         tapButton.SetActive(false);
     }
@@ -109,7 +113,7 @@ public class FitnessDevice : MonoBehaviour
 
     private void OnDestroy()
     {
-        clickableObject.onClick -= OnClick;
+        // clickableObject.onClick -= OnClick;
 
         if (playerAttached)
         {
