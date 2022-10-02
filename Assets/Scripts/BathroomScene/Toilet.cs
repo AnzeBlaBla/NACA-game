@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class Toilet : MonoBehaviour
 {
-    ClickableObject clickableObject;
     public Transform attachPosition;
 
     public GameObject curtain;
 
 
     public Vector2 pushForce;
-    void Awake()
-    {
-        clickableObject = GetComponent<ClickableObject>();
-        clickableObject.onClick += OnClick;
-    }
 
     bool playerAttached = false;
     GameObject astronaut;
@@ -50,11 +44,6 @@ public class Toilet : MonoBehaviour
         AstronautManager.Instance.SaveStats();
 
         DetachPlayer();
-    }
-
-    public void OnClick()
-    {
-
     }
 
 
@@ -96,7 +85,6 @@ public class Toilet : MonoBehaviour
 
     private void OnDestroy()
     {
-        clickableObject.onClick -= OnClick;
 
         if (playerAttached)
         {

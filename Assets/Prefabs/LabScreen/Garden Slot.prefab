@@ -513,7 +513,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: ccb54e289d9608744a7ccf31c78fbd1a, type: 3}
   - {fileID: 2800000, guid: 369ee5ab151bc4b4bb1fdb4676518fa4, type: 3}
   - {fileID: 2800000, guid: 9e76d8f175852bd46aa620198132b3b9, type: 3}
-  growTime: 30
+  growTime: 240
   plantSound: {fileID: 6593985347044611101}
   harvestSound: {fileID: 4179339228642602416}
 --- !u!1 &6593985347044611101
