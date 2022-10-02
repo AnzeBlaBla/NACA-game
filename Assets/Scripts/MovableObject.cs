@@ -11,7 +11,8 @@ public class MovableObject : MonoBehaviour
     public Vector2 randomVelocityRange = new Vector2(-1f, 1f);
     public Vector2 randomRotationalVelocityRange = new Vector2(-1f, 1f);
 
-    public float moveForceAmount = 1f;
+    public float forceMultiplier = 1f;
+    public float torqueMultiplier = 1f;
 
     public bool keepMomentum = true;
 
@@ -80,7 +81,8 @@ public class MovableObject : MonoBehaviour
 
             Vector2 desiredPosition = PointerPos() - holdLocation;
 
-            rb.AddForce((desiredPosition - (Vector2)transform.position) * moveForceAmount, ForceMode2D.Force);
+            rb.AddForce((desiredPosition - (Vector2)transform.position) * forceMultiplier, ForceMode2D.Force);
+
         }
     }
 

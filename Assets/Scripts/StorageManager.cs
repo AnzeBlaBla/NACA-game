@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 public class StorageManager : Singleton<StorageManager>
 {
-    private static string playerPrefsKey = "storage_items";
+    public static string playerPrefsKey = "storage_items";
 
 
     public float filterInterval = 5f;

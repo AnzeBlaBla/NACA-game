@@ -9,6 +9,7 @@ public class AstronautManager : Singleton<AstronautManager>
 {
     private static string playerPrefsKey = "astronaut_stats";
 
+    public string mainScene;
     public string gameOverScene;
 
     public Action onUpdate;
@@ -175,5 +176,16 @@ public class AstronautManager : Singleton<AstronautManager>
         data.food = Mathf.Clamp(data.food, 0f, 100f);
         data.water = Mathf.Clamp(data.water, 0f, 100f);
         data.fitness = Mathf.Clamp(data.fitness, 0f, 100f);
+    }
+
+    public void RestartGame()
+    {
+        PlayerPrefs.DeleteKey(playerPrefsKey);
+        PlayerPrefs.DeleteKey(MissionTimerManager.playerPrefsKey);
+        PlayerPrefs.DeleteKey(StorageManager.playerPrefsKey);
+
+        SceneManager.LoadScene(mainScene);
+
+        SceneManager.UnloadSceneAsync(gameOverScene);
     }
 }
