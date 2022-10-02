@@ -30,7 +30,7 @@ public class AirLockDoor : MonoBehaviour
 
      void onAnimationComplete()
      {
-         ScreenManager.Instance.LoadScreen("OutsideAirLockScreen", Color.black);
+         ScreenManager.Instance.LoadScreen("OutsideAirLockScreen");
          ScreenManager.Instance.UnloadScreen(ScreenManager.Instance.currentScreenIndex);
      }
 

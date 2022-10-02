@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: AirlockScreen
   m_EditorClassIdentifier: 
   sceneName: AirlockScreen
-  backgroundColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+  displayName: Airlock
+  backgroundImage: {fileID: 21300000, guid: eb03e54db44a2564599cb53002f2767b, type: 3}

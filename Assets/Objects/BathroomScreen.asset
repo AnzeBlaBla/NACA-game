@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: BathroomScreen
   m_EditorClassIdentifier: 
   sceneName: BathroomScreen
-  backgroundColor: {r: 0.8160377, g: 1, b: 0.9705056, a: 1}
+  displayName: Bathroom
+  backgroundImage: {fileID: 21300000, guid: b6d8831d71bc0a54da65b33029a09411, type: 3}

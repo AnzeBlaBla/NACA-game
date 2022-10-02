@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: CantineScreen
   m_EditorClassIdentifier: 
   sceneName: CantineScreen
-  backgroundColor: {r: 1, g: 0.67429936, b: 0.3726415, a: 1}
+  displayName: Cantine
+  backgroundImage: {fileID: 21300000, guid: dad718f195a5fb145bcdd35d1ad37947, type: 3}

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: FitnessScreen
   m_EditorClassIdentifier: 
   sceneName: FitnessScreen
-  backgroundColor: {r: 1, g: 1, b: 1, a: 0}
+  displayName: Fitness
+  backgroundImage: {fileID: 21300000, guid: eb03e54db44a2564599cb53002f2767b, type: 3}
