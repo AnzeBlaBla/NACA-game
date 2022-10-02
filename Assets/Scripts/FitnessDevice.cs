@@ -14,7 +14,8 @@ public class FitnessDevice : MonoBehaviour
 
     public float followDistance = 1.5f;
 
-    public Vector3 runningPosition = new Vector3(0.5f, 0, 0);
+    public float runningSpeed = 0.5f;
+    public float trackSpeed = 0.2f;
 
     void Awake()
     {
@@ -100,7 +101,7 @@ public class FitnessDevice : MonoBehaviour
     public void OnActionTap()
     {
         AstronautManager.Instance.ChangeStat("fitness", 0.5f);
-        astronaut.transform.position = astronaut.transform.position + runningPosition;
+        astronaut.transform.position = astronaut.transform.position + new Vector3(this.runningSpeed, 0, 0);
         if(AstronautManager.Instance.GetStat("fitness") >= 100){
             DetachPlayer();
         }
@@ -110,7 +111,7 @@ public class FitnessDevice : MonoBehaviour
     {
         if (playerAttached)
         {
-            astronaut.transform.position = astronaut.transform.position - (runningPosition / 60);
+            astronaut.transform.position = astronaut.transform.position - new Vector3(this.trackSpeed, 0, 0);
             float distance = Mathf.Abs(astronaut.transform.position.x - attachPosition.position.x);
             if(distance > followDistance)
             {
