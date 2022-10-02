@@ -2457,7 +2457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2358807906595874900, guid: 1daa2a08794289e4c80dc0dfb2e0087a, type: 3}
       propertyPath: forceMultiplier
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2358807906595874901, guid: 1daa2a08794289e4c80dc0dfb2e0087a, type: 3}
       propertyPath: lossIntervalOfflineMinutes

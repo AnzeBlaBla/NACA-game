@@ -6,8 +6,8 @@ using TMPro;
 
 public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 {
+    public static int growTime = 300;
     [SerializeField] private Texture[] textures;
-    [SerializeField] private int growTime = 30;
     [SerializeField] private GameObject plantSound;
     [SerializeField] private GameObject harvestSound;
 
@@ -30,7 +30,7 @@ public class GardenSlot : MonoBehaviour, IDropHandler, IPointerDownHandler
 
     private void PutGardenSlot(int slotIndex, int saveTime)
     {
-        StorageManager.Instance.data.gardenSlots[slotIndex] = new StorageManager.GardenSlot()
+        StorageManager.Instance.data.gardenSlots[slotIndex] = new StorageManager.GardenSlotStruct()
         {
             index = slotIndex,
             saveTime = saveTime,

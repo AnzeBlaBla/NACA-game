@@ -14,7 +14,7 @@ public class GreenHouseUIUpdate : MonoBehaviour
         // update UI
         for (int i = 0; i < StorageManager.Instance.data.gardenSlots.Count; i++)
         {
-            StorageManager.GardenSlot slot = StorageManager.Instance.data.gardenSlots[i];
+            StorageManager.GardenSlotStruct slot = StorageManager.Instance.data.gardenSlots[i];
             GameObject slotUI = gardenSlotsUI.transform.GetChild(i).gameObject;
             GameObject seed = slotUI.transform.GetChild(0).gameObject;
 
@@ -46,7 +46,7 @@ public class GreenHouseUIUpdate : MonoBehaviour
             {
                 for (int i = 0; i < StorageManager.Instance.data.gardenSlots.Count; i++)
                 {
-                    StorageManager.GardenSlot slot = StorageManager.Instance.data.gardenSlots[i];
+                    StorageManager.GardenSlotStruct slot = StorageManager.Instance.data.gardenSlots[i];
 
                     if (slot.saveTime != 0)
                     {

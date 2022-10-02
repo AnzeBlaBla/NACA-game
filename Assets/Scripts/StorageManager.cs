@@ -16,7 +16,7 @@ public class StorageManager : Singleton<StorageManager>
     public int gardenEmptyReminderTimeMinutes = 60;
 
 
-    public struct GardenSlot
+    public struct GardenSlotStruct
     {
         public int index;
         public int saveTime;
@@ -25,24 +25,26 @@ public class StorageManager : Singleton<StorageManager>
 
     public struct DataStruct
     {
-        public List<GardenSlot> gardenSlots;
+        public List<GardenSlotStruct> gardenSlots;
         public int foodAmount;
         public float filteredWater;
         public float unfilteredWater;
+        public int saveTime;
     }
 
     public DataStruct data = new DataStruct()
     {
-        gardenSlots = new List<GardenSlot>()
+        gardenSlots = new List<GardenSlotStruct>()
         {
-            new GardenSlot() { index = 0, saveTime = 0, growTime = 10 },
-            new GardenSlot() { index = 1, saveTime = 0, growTime = 10 },
-            new GardenSlot() { index = 2, saveTime = 0, growTime = 10 },
-            new GardenSlot() { index = 3, saveTime = 0, growTime = 10 },
+            new GardenSlotStruct() { index = 0, saveTime = 0, growTime = 10 },
+            new GardenSlotStruct() { index = 1, saveTime = 0, growTime = 10 },
+            new GardenSlotStruct() { index = 2, saveTime = 0, growTime = 10 },
+            new GardenSlotStruct() { index = 3, saveTime = 0, growTime = 10 },
         },
         foodAmount = 5,
         filteredWater = 5f,
-        unfilteredWater = 0f
+        unfilteredWater = 0f,
+        saveTime = Epoch.Current()
     };
 
     private void Start()
@@ -82,7 +84,8 @@ public class StorageManager : Singleton<StorageManager>
                 badgeNumber = 1,
             });
 
-        } else
+        }
+        else
         {
             // calculate when it will be all ready
 
@@ -130,9 +133,10 @@ public class StorageManager : Singleton<StorageManager>
         }
     }
 
-    
+
     public void SaveData()
     {
+        data.saveTime = Epoch.Current();
         Debug.Log(JsonConvert.SerializeObject(data));
         onUpdate?.Invoke();
         PlayerPrefs.SetString(playerPrefsKey, JsonConvert.SerializeObject(data));
@@ -142,10 +146,37 @@ public class StorageManager : Singleton<StorageManager>
     {
         if (PlayerPrefs.HasKey(playerPrefsKey))
         {
-            data = JsonConvert.DeserializeObject<DataStruct>(PlayerPrefs.GetString(playerPrefsKey));
+            DataStruct loadedData = JsonConvert.DeserializeObject<DataStruct>(PlayerPrefs.GetString(playerPrefsKey));
+            data = ApplyTime(loadedData);
         }
     }
-    
+
+    public DataStruct ApplyTime(DataStruct data)
+    {
+        // apply water filter
+
+        int timePassed = Epoch.Current() - data.saveTime;
+
+        if (timePassed > 0)
+        {
+            int filterCount = (int)(timePassed / filterInterval);
+
+            if (filterCount > 0)
+            {
+                if(filterCount > data.unfilteredWater)
+                {
+                    filterCount = (int)data.unfilteredWater;
+                }
+
+                data.unfilteredWater -= filterCount;
+                data.filteredWater += filterCount;
+            }
+        }
+
+
+        return data;
+    }
+
     public float GetData(string key)
     {
         switch (key)

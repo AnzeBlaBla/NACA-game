@@ -6,6 +6,7 @@ using TMPro;
 public class MissionTimerManager : MonoBehaviour
 {
     public static string playerPrefsKey = "mission_start_time";
+    public bool doUpdate = true;
     int missionStartTime;
 
     public TMP_Text timerText;
@@ -23,7 +24,10 @@ public class MissionTimerManager : MonoBehaviour
             PlayerPrefs.SetInt(playerPrefsKey, missionStartTime);
         }
 
-        StartCoroutine(UpdateDataLoop());
+        if(doUpdate)
+            StartCoroutine(UpdateDataLoop());
+        else
+            UpdateUI();
     }
     
     public string GetMissionTime()
