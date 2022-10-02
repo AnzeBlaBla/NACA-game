@@ -1654,8 +1654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10824b43bc9906c4193f4ea0cb147dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textureOffset: {x: 0.005, y: 0.005}
-  randomOffset: 0.00001
+  textureOffset: {x: 0.005, y: 0}
+  randomOffset: 0.0001
 --- !u!64 &1058314523
 MeshCollider:
   m_ObjectHideFlags: 0

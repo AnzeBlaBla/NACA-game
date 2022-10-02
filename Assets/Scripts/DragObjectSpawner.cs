@@ -13,8 +13,6 @@ public class DragObjectSpawner : MonoBehaviour
   public GameObject toSpawn;
   public string useItem;
 
-  [SerializeField] private GameObject draggableObjectSound;
-
   void Start()
   {
 
@@ -39,8 +37,6 @@ public class DragObjectSpawner : MonoBehaviour
       {
         held = Instantiate(toSpawn, mousePos, Quaternion.identity);
         StorageManager.Instance.ChangeData(useItem, -1f);
-
-        draggableObjectSound.GetComponent<AudioSource>().Play();
       }
     }
   }
