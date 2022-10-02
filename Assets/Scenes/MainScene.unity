@@ -2461,7 +2461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2358807906595874901, guid: 1daa2a08794289e4c80dc0dfb2e0087a, type: 3}
       propertyPath: lossIntervalOfflineMinutes
-      value: 0.1
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2358807906595874902, guid: 1daa2a08794289e4c80dc0dfb2e0087a, type: 3}
       propertyPath: m_RootOrder
@@ -2607,7 +2607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1549152652624029154, guid: 0b0b50cd78aa4df45a68c6df3341802f, type: 3}
       propertyPath: gardenEmptyReminderTimeMinutes
-      value: 1
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2041647839242370394, guid: 0b0b50cd78aa4df45a68c6df3341802f, type: 3}
       propertyPath: m_Name
