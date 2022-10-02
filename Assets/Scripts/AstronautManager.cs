@@ -77,13 +77,14 @@ public class AstronautManager : Singleton<AstronautManager>
 
         float notifAtValue = 20f;
 
-        // Food notification
+        AppNotificationManager.Instance.CancelChannelNotifications("astronaut");
 
+        // Food notification
         if (data.food > notifAtValue)
         {
             float foodToNotif = data.food - notifAtValue;
 
-            DateTime notifAt = Epoch.ToDateTime().AddMinutes(foodToNotif / foodLossPerInterval * lossIntervalOnlineMinutes);
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes(foodToNotif / foodLossPerInterval * lossIntervalOfflineMinutes);
 
             // Schedule notifications
             AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()
@@ -102,7 +103,7 @@ public class AstronautManager : Singleton<AstronautManager>
         {
             float waterToNotif = data.water - notifAtValue;
 
-            DateTime notifAt = Epoch.ToDateTime().AddMinutes(waterToNotif / waterLossPerInterval * lossIntervalOnlineMinutes);
+            DateTime notifAt = Epoch.ToDateTime().AddMinutes(waterToNotif / waterLossPerInterval * lossIntervalOfflineMinutes);
 
             // Schedule notifications
             AppNotificationManager.Instance.SendNotification(new AppNotificationManager.Notification()

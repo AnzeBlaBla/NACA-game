@@ -12,11 +12,12 @@ public class AppNotificationManager : Singleton<AppNotificationManager>
     [SerializeField, Tooltip("Reference to the notification manager.")]
     public GameNotificationsManager manager;
 
-    public struct NotificationChannel
+    public class NotificationChannel
     {
         public string id;
         public string title;
         public string description;
+        public GameNotificationChannel channel;
     }
 
     public struct Notification
@@ -72,6 +73,9 @@ public class AppNotificationManager : Singleton<AppNotificationManager>
         foreach (var channel in notificationChannels)
         {
             channels[i] = new GameNotificationChannel(channel.Value.id, channel.Value.title, channel.Value.description);
+
+            notificationChannels[channel.Key].channel = channels[i];
+
             i++;
         }
 
@@ -108,6 +112,19 @@ public class AppNotificationManager : Singleton<AppNotificationManager>
     public void SendNotification(Notification notification)
     {
         SendNotification(notification.title, notification.description, notification.deliveryTime, notification.badgeNumber, notification.channel, notification.smallIconName, notification.largeIconName);
+    }
+
+    public void CancelChannelNotifications(string channelName)
+    {
+        GameNotificationChannel channel = notificationChannels[channelName].channel;
+
+        foreach (var notification in manager.PendingNotifications)
+        {
+            if (notification.Notification.Group == channel.Id)
+            {
+                manager.CancelNotification((int)notification.Notification.Id);
+            }
+        }
     }
 
 }
