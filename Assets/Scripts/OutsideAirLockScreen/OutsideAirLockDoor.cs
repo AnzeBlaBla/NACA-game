@@ -32,15 +32,20 @@ public class OutsideAirLockDoor : MonoBehaviour
             isAnimating = true;
             AstronautManager.Instance.gameObject.GetComponent<AstronautAnimationManager>().lockAstronaut(transform.position);
             animator.SetTrigger("TrOpenAirLock");
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(2);
             yield return StartCoroutine(goingOut ? goOut() : goIn());
             if(goingOut){
+                addForceToAstronaut();
                 animator.SetTrigger("TrCloseAirLock");
                 changeRendererLayout(0);
-                yield return new WaitForSeconds(4);
+                yield return new WaitForSeconds(2);
             }
             isAnimating = false;
         }
+    }
+
+    void addForceToAstronaut(){
+        AstronautManager.Instance.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10f, 15f));
     }
 
     IEnumerator goIn(){

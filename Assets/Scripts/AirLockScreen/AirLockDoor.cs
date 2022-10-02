@@ -19,8 +19,8 @@ public class AirLockDoor : MonoBehaviour
 
     void Start(){
         if(ScreenManager.Instance.isGoingInsideOrOutside){
+            ScreenManager.Instance.DisableButtons();
             ScreenManager.Instance.isGoingInsideOrOutside = false;
-            ScreenManager.Instance.EnableButtons();
             changeRendererLayout(100);
             StartCoroutine(this.openDoor(true));
         }
@@ -32,15 +32,21 @@ public class AirLockDoor : MonoBehaviour
             isAnimating = true;
             AstronautManager.Instance.gameObject.GetComponent<AstronautAnimationManager>().lockAstronaut(transform.position);
             animator.SetTrigger("TrOpenAirLock");
-            yield return new WaitForSeconds(4);
+            yield return new WaitForSeconds(2);
             yield return StartCoroutine(goingOut ? goOut() : goIn());
             if(goingOut){
+                addForceToAstronaut();
                 animator.SetTrigger("TrCloseAirLock");
                 changeRendererLayout(0);
-                yield return new WaitForSeconds(4);
+                yield return new WaitForSeconds(2);
             }
+            ScreenManager.Instance.EnableButtons();
             isAnimating = false;
         }
+    }
+
+    void addForceToAstronaut(){
+        AstronautManager.Instance.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(10f, 15f));
     }
 
     IEnumerator goIn(){
@@ -61,14 +67,19 @@ public class AirLockDoor : MonoBehaviour
     {
         if(!isAnimating)
         {
-            StartCoroutine(goInside());
+            ScreenManager.Instance.DisableButtons();
+            StartCoroutine(goOutside());
         }
     }
 
-    IEnumerator goInside(){
+    IEnumerator goOutside(){
         yield return StartCoroutine(openDoor(false));
         ScreenManager.Instance.DisableButtons();
         ScreenManager.Instance.isGoingInsideOrOutside = true;
         ScreenManager.Instance.LoadScreen(outsideScreen);
+    }
+
+    void OnDestory(){
+        AstronautManager.Instance.gameObject.GetComponent<AstronautAnimationManager>().unlockAstronaut();
     }
 }
