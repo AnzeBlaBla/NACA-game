@@ -271,3 +271,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ebbaca4e53a41098a88d2b3b7bdf35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outsideScreen: {fileID: 11400000, guid: 2c9e17b88e3d9ea49b2a72e651b1ebe6, type: 2}

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OutsideAirLockDoor : MonoBehaviour
 {
+    public ScreenItem insideScreenItem;
+    
     ClickableObject clickableObject;
     private Animator animator;
 
@@ -62,8 +64,7 @@ public class OutsideAirLockDoor : MonoBehaviour
     IEnumerator goInside(){
         yield return StartCoroutine(openDoor(false));
         ScreenManager.Instance.EnableButtons();
-        ScreenManager.Instance.LoadScreen("AirLockScreen", Color.black);
-        ScreenManager.Instance.UnloadScreenWithName("OutsideAirLockScreen");
+        ScreenManager.Instance.LoadScreen(insideScreenItem);
     }
 
 }

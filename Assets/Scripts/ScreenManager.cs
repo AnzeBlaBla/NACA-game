@@ -11,7 +11,9 @@ public class ScreenManager : Singleton<ScreenManager>
     public GameObject backButton;
 
     public List<ScreenItem> screens;
+    
     public int currentScreenIndex = 0;
+    public ScreenItem oldScreen;
 
     public Image background;
     public TextMeshProUGUI title;
@@ -23,67 +25,70 @@ public class ScreenManager : Singleton<ScreenManager>
         // Unload all screens
         for (int i = 0; i < screens.Count; i++)
         {
-            UnloadScreen(i);
+            UnloadScreenByIndex(i);
         }
 
         // Load the first screen
-        LoadCurrentScreen();
-        this.UnloadScreenWithName("OutsideAirLockScreen");
+        LoadScreen(screens[currentScreenIndex]);
     }
 
 
     public void NextScreen()
     {
-        int oldIndex = currentScreenIndex;
-        currentScreenIndex++;
-        if (currentScreenIndex >= screens.Count)
+        sceneSwitchSound.GetComponent<AudioSource>().Play();
+
+        int index = currentScreenIndex + 1;
+        if (index >= screens.Count)
         {
-            currentScreenIndex = 0;
+            index = 0;
         }
-        LoadCurrentScreen();
-        UnloadScreen(oldIndex);
+
+        currentScreenIndex = index;
+
+        LoadScreen(screens[index]);
     }
 
     public void PreviousScreen()
     {
-        int oldIndex = currentScreenIndex;
-        currentScreenIndex--;
-        if (currentScreenIndex < 0)
-        {
-            currentScreenIndex = screens.Count - 1;
-        }
-        LoadCurrentScreen();
-        UnloadScreen(oldIndex);
-    }
-
-    public void LoadCurrentScreen()
-    {
-        LoadScreen(screens[currentScreenIndex].sceneName, screens[currentScreenIndex].backgroundImage);
         sceneSwitchSound.GetComponent<AudioSource>().Play();
+
+        int index = currentScreenIndex - 1;
+        if (index < 0)
+        {
+            index = screens.Count - 1;
+        }
+
+        currentScreenIndex = index;
+
+        LoadScreen(screens[index]);
     }
 
-    public void LoadScreen(string name, Sprite backgroundImage = null)
+    public void LoadScreen(ScreenItem screen)
     {
-        SceneManager.LoadScene(name, LoadSceneMode.Additive);
-        title.text = screens[currentScreenIndex].displayName;
+        SceneManager.LoadScene(screen.sceneName, LoadSceneMode.Additive);
+        title.text = screen.displayName;
 
-
-
-        if (backgroundImage != null)
+        if (screen.backgroundImage != null)
         {
             background.gameObject.SetActive(true);
-            background.sprite = backgroundImage;
+            background.sprite = screen.backgroundImage;
         }
         else
         {
             background.gameObject.SetActive(false);
         }
-        
+
         AstronautManager.Instance.gameObject.GetComponent<MovableObject>().ResetPosition();
 
+        if (oldScreen != null)
+        {
+            UnloadScreenWithName(oldScreen.sceneName);
+        }
+
+        oldScreen = screen;
     }
 
-    public void UnloadScreen(int index)
+    public void UnloadScreenByIndex(int index)
     {
         this.UnloadScreenWithName(screens[index].sceneName);
     }

@@ -6,6 +6,7 @@ public class AirLockDoor : MonoBehaviour
 {
     ClickableObject clickableObject;
     private Animator animator;
+    public ScreenItem outsideScreen;
 
     private bool isLocked = true;
     private bool isAnimating = false;
@@ -30,8 +31,7 @@ public class AirLockDoor : MonoBehaviour
 
      void onAnimationComplete()
      {
-         ScreenManager.Instance.LoadScreen("OutsideAirLockScreen");
-         ScreenManager.Instance.UnloadScreen(ScreenManager.Instance.currentScreenIndex);
+         ScreenManager.Instance.LoadScreen(outsideScreen);
      }
 
 
