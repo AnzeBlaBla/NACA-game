@@ -282,6 +282,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4331389335176093925, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
+      propertyPath: m_text
+      value: "To fill up the food and water bars so you can survive, you need to
+        drag items from baskets to the astronaut (left basket is for water and the
+        right basket is for food). \n\nThe water is produced in the lab room (unfiltered
+        water is converted to filtered water). The food is also produced there by
+        planting and harvesting seeds."
+      objectReference: {fileID: 0}
     - target: {fileID: 7617698012441043233, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
       propertyPath: tutorialCanvasId
       value: cantine

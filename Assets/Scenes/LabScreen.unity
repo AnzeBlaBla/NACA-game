@@ -765,9 +765,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7617698012441043233, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
-      propertyPath: tutorialCanvasId
-      value: lab
+    - target: {fileID: 4331389335176093925, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
+      propertyPath: m_text
+      value: 'Water tanks are filtering water automatically from left (unfiltered
+        water) to right (filtered water).
+
+
+        To produce food you need to open
+        garden menu (by clicking on the button in the bottom of the screen). After
+        that you need to drag seeds to empty garden slots. To harvest food click
+        on the garden slot when it says "Ready".'
       objectReference: {fileID: 0}
     - target: {fileID: 7617698012441043234, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
       propertyPath: m_Name

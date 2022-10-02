@@ -279,6 +279,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4331389335176093925, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
+      propertyPath: m_text
+      value: 'To visit the environment outside of the space ship you need to drag
+        your player through the airlock on the bottom of the room.
+
+
+        The
+        astronaut will go outside the spaceship and to go back inside, you need to
+        repeat the process described above.'
+      objectReference: {fileID: 0}
     - target: {fileID: 7617698012441043233, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
       propertyPath: tutorialCanvasId
       value: airlock

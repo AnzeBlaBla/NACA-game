@@ -295,6 +295,12 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4331389335176093925, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
+      propertyPath: m_text
+      value: "To fill up your exercise bar you need to put the astronaut on treadmill.
+        \n\nAfter that you need to tap on the button shown above to keep the astronaut
+        on treadmill."
+      objectReference: {fileID: 0}
     - target: {fileID: 7617698012441043233, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
       propertyPath: tutorialCanvasId
       value: fitness
@@ -525,6 +531,7 @@ MonoBehaviour:
   followDistance: 1
   runningSpeed: 0.5
   trackSpeed: 0.03
+  waterFoodMinLimit: 10
 --- !u!114 &779535445
 MonoBehaviour:
   m_ObjectHideFlags: 0

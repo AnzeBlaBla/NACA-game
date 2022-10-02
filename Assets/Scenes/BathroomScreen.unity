@@ -221,6 +221,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4331389335176093925, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
+      propertyPath: m_text
+      value: 'To produce unfiltered water you need to put your player on the toilet,
+        which puts urine in the unfiltered water tank in the lab room.
+
+
+        The
+        unfiltered water is then automatically filtered after some time has passed
+        and ready to consume in the cantine room.'
+      objectReference: {fileID: 0}
     - target: {fileID: 7617698012441043233, guid: 2aa3b995dc1e7f0498cf2f8bd351f47c, type: 3}
       propertyPath: tutorialCanvasId
       value: bathroom
