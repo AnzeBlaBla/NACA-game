@@ -29,7 +29,7 @@ public class AstronautAnimationManager : MonoBehaviour
         } while ( animation.isPlaying );
     }
 
-    public void lockAstronaut()
+    public void lockAstronaut(Vector3 position)
     {
         GameObject astronaut = AstronautManager.Instance.gameObject;
 
@@ -42,7 +42,7 @@ public class AstronautAnimationManager : MonoBehaviour
 
         astronaut.transform.rotation = Quaternion.identity;
 
-        astronaut.transform.position = new Vector3(0, 0, 0);
+        astronaut.transform.position = position;
     }
 
     public void unlockAstronaut()
