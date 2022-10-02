@@ -29,7 +29,8 @@ public class ScreenManager : Singleton<ScreenManager>
         {
             UnloadScreenByIndex(i);
         }
-
+        // Unload outside airlock screen
+        UnloadScreenWithName("OutsideAirLockScreen");
         // Load the first screen
         LoadScreen(screens[currentScreenIndex]);
     }
