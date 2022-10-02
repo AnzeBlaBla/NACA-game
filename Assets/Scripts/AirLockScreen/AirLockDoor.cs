@@ -27,6 +27,8 @@ public class AirLockDoor : MonoBehaviour
     }
 
     IEnumerator openDoor(bool goingOut){
+        Debug.Log(GetComponent<Transform>().position);
+        isAnimating = true;
         if(!isAnimating)
         {
             isAnimating = true;
@@ -56,15 +58,6 @@ public class AirLockDoor : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = index;
     }
-
-
-     void onAnimationComplete()
-     {
-        ScreenManager.Instance.isGoingInsideOrOutside = true;
-        ScreenManager.Instance.LoadScreen(outsideScreen);
-     }
-
-
     // on click function
     public void OnClick()
     {
